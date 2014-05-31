@@ -39,8 +39,8 @@ namespace NearFuturePropulsion
         public float EnergyUsage = 100f;
 
         // Current thrust setting
-        [KSPField(isPersistant = true, guiActive = true, guiActiveEditor = true, guiName = "Power", guiFormat = "S3", guiUnits = "%")]
-        [UI_FloatEdit(scene = UI_Scene.All, minValue = 0.0f, maxValue = 100.0f, incrementLarge = 25.0f, incrementSmall = 5f, incrementSlide = 1f)]
+        [KSPField(isPersistant = true, guiActive = true, guiActiveEditor = true, guiName = "Power", guiFormat = "S2", guiUnits = "%")]
+        [UI_FloatEdit(scene = UI_Scene.All, minValue = 0.0f, maxValue = 100.0f, incrementLarge = 25.0f, incrementSmall = 5f, incrementSlide = 0.001f)]
         public float CurThrustSetting = 0f;
 
         [KSPEvent(guiActive = true, guiName = "Link All Variable Engines", active = true)]
@@ -116,7 +116,7 @@ namespace NearFuturePropulsion
 
             engine.maxThrust = ThrustCurve.Evaluate(level);
 
-            RecalculateRatios(engine.maxThrust, IspCurve.Evaluate(level));
+            RecalculateRatios(ThrustCurve.Evaluate(level), IspCurve.Evaluate(level));
         }
 
         private void RecalculateRatios(float desiredthrust, float desiredisp)
@@ -295,7 +295,7 @@ namespace NearFuturePropulsion
 
                 if (frameCounter > 10)
                 {
-                    engine.maxThrust = ThrustCurve.Evaluate((float)FlightGlobals.getStaticPressure(vessel.transform.position));
+                    engine.maxThrust = AtmoThrustCurve.Evaluate((float)FlightGlobals.getStaticPressure(vessel.transform.position));
                     engine.atmosphereCurve = new FloatCurve();
                     engine.atmosphereCurve.Add(0f, AtmoIspCurve.Evaluate((float)FlightGlobals.getStaticPressure(vessel.transform.position)));
                     frameCounter = 0;
