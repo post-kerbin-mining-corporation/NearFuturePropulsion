@@ -161,11 +161,12 @@ namespace NearFuturePropulsion
                 name = n;
                 propellant = prop;
                 thrustCurve = new FloatCurve();
-                thrustCurve.Add(0f, t1);
-                thrustCurve.Add(1f, t2);
+                
+                thrustCurve.Add(0f, t1,0f,0f);
+                thrustCurve.Add(1f, t2,0f,0f);
                 ispCurve = new FloatCurve();
-                ispCurve.Add(0f, i1);
-                ispCurve.Add(1f, i2);
+                ispCurve.Add(0f, i1,0f,0f);
+                ispCurve.Add(1f, i2,0f,0f);
                 throttleAnim = Utils.SetUpAnimation(anim,p);
 
                 foreach (AnimationState t in throttleAnim)
