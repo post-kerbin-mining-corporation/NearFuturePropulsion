@@ -25,7 +25,7 @@ namespace NearFuturePropulsion
         {
             heatStates = Utils.SetUpAnimation(HeatAnimation, this.part);
             heatTransform = part.FindModelTransform(HeatTransformName);
-            Debug.Log(heatTransform);
+            //Debug.Log(heatTransform);
             foreach (AnimationState heatState in heatStates)
             {
                 heatState.AddMixingTransform(heatTransform);
