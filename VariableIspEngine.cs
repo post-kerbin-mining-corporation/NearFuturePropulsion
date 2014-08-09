@@ -38,7 +38,11 @@ namespace NearFuturePropulsion
         [UI_FloatEdit(scene = UI_Scene.All, minValue = 0.0f, maxValue = 100, incrementLarge = 25.0f, incrementSmall = 5f, incrementSlide = 0.1f)]
         public float CurThrustSetting = 0f;
 
-        
+        [KSPField(isPersistant = false, guiActive = false, guiActiveEditor = true, guiName = "Estimated Isp", guiFormat = "S2", guiUnits = "s")]
+        public float CurIsp;
+        [KSPField(isPersistant = false, guiActive = false, guiActiveEditor = true, guiName = "Estimated Thrust", guiFormat = "S2", guiUnits = "kN")]
+        public float CurThrust;
+
         [KSPField(isPersistant = true)]
         public int EngineModeID;
 
@@ -128,8 +132,9 @@ namespace NearFuturePropulsion
 
         public override string GetInfo()
         {
-            return String.Format("Maximum Thrust: {0:F1} kN", ThrustCurve.Evaluate(1f)) + "\n" +
-                String.Format("Isp at Maximum Thrust: {0:F0} s", IspCurve.Evaluate(1f)) + "\n";
+          //  return String.Format("Maximum Thrust: {0:F1} kN", ThrustCurve.Evaluate(1f)) + "\n" +
+          //      String.Format("Isp at Maximum Thrust: {0:F0} s", IspCurve.Evaluate(1f)) + "\n";
+            return "";
         }
 
         private float minThrust= 0f;
@@ -198,8 +203,10 @@ namespace NearFuturePropulsion
 
             engine.maxThrust = ThrustCurve.Evaluate(level);
 
-            Debug.Log("Changed Isp to " + engine.atmosphereCurve.Evaluate(0f).ToString());
-            Debug.Log("Changed thrust to " + engine.maxThrust.ToString());
+            CurIsp = engine.atmosphereCurve.Evaluate(0f);
+            CurThrust = engine.maxThrust = ThrustCurve.Evaluate(level);
+            //Debug.Log("Changed Isp toengine.atmosphereCurve.Evaluate(0f) " + engine.atmosphereCurve.Evaluate(0f).ToString());
+            //Debug.Log("Changed thrust to " + engine.maxThrust.ToString());
 
             RecalculateRatios(ThrustCurve.Evaluate(level), IspCurve.Evaluate(level));
 
@@ -220,7 +227,10 @@ namespace NearFuturePropulsion
 
         public override void OnStart(PartModule.StartState state)
         {
-            
+
+            if (state != StartState.Editor)
+                SetupVariableEngines();
+
 
             LoadEngineModes();
             LoadEngineModules();
@@ -249,9 +259,7 @@ namespace NearFuturePropulsion
                 ChangeIspAndThrust(CurThrustSetting / 100f);
                 Debug.Log("NFP: Using tweakable VASIMR method");
             }
-            if (state != StartState.Editor)
-                SetupVariableEngines();
-
+            
 
             CalculateCurves();
 
@@ -332,6 +340,8 @@ namespace NearFuturePropulsion
 
             AtmoIspCurve = new FloatCurve();
             AtmoIspCurve.Add(0f, engine.atmosphereCurve.Evaluate(0f));
+
+            
 
             float rate = FindFlowRate(engine.maxThrust, engine.atmosphereCurve.Evaluate(0f), fuelPropellant);
 
