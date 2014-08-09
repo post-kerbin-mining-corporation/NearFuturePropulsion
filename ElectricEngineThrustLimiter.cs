@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using UnityEngine;
+using KSPAPIExtensions;
 
 namespace NearFuturePropulsion
 {
@@ -26,9 +27,23 @@ namespace NearFuturePropulsion
 
         private bool started = false;
 
+        [KSPField(isPersistant = false, guiActive = true, guiActiveEditor = true, guiName = "Power Input", guiFormat = "S2", guiUnits = " Ec/s")]
+        public float EnergyUsage = 100f;
+
+        private Propellant fuelPropellant;
+        private Propellant ecPropellant;
+
+        public override string GetInfo()
+        {
+            return String.Format("Power Input: {0:F1} Ec/s", Utils.FindPowerUse(engine.maxThrust, engine.atmosphereCurve.Evaluate(0f), fuelPropellant, ecPropellant)) + "\n" +
+                  String.Format("Fuel: " + fuelPropellant.name + "\n");
+
+        }
+
         public override void OnLoad(ConfigNode node)
         {
             base.OnLoad(node);
+            this.moduleName = "Electric Engine";
 
         }
         public override void OnStart(PartModule.StartState state)
@@ -36,12 +51,13 @@ namespace NearFuturePropulsion
             base.OnStart(state);
             engine = part.GetComponent<ModuleEnginesFX>();
 
-            Propellant fuelPropellant = new Propellant();
             foreach (Propellant prop in engine.propellants)
             {
-     
+
                 if (prop.name != "ElectricCharge")
                     fuelPropellant = prop;
+                else
+                    ecPropellant = prop;
             }
 
             ThrustCurve = new FloatCurve();
@@ -78,12 +94,22 @@ namespace NearFuturePropulsion
 
         public  void FixedUpdate()
         {
-            if (started)
+            if (KSPAPIExtensions.PartUtils.IsLoaded(GameSceneFilter.Flight))
             {
                 engine.maxThrust = ThrustCurve.Evaluate((float)FlightGlobals.getStaticPressure(vessel.transform.position));
                 engine.atmosphereCurve = new FloatCurve();
                 engine.atmosphereCurve.Add(0f, AtmoCurve.Evaluate((float)FlightGlobals.getStaticPressure(vessel.transform.position)));
+
+                EnergyUsage = Utils.FindPowerUse(engine.maxThrust, engine.atmosphereCurve.Evaluate(0f), fuelPropellant, ecPropellant);
             }
+
+            if (KSPAPIExtensions.PartUtils.IsLoaded(GameSceneFilter.AnyEditorOrFlight))
+            {
+                EnergyUsage = Utils.FindPowerUse(engine.maxThrust, engine.atmosphereCurve.Evaluate(0f), ecPropellant, fuelPropellant);
+            }
+                
+            
+
         }
 
         

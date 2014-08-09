@@ -29,18 +29,20 @@ namespace NearFuturePropulsion
         [KSPField(isPersistant = false)]
         public FloatCurve IspCurve = new FloatCurve();
 
-        // Ec to use
-        [KSPField(isPersistant = false)]
-        public float EnergyUsage = 100f;    
+        
 
         // Current thrust setting
-        [KSPField(isPersistant = true, guiActive = true, guiActiveEditor = true, guiName = "Power", guiFormat = "S2", guiUnits = "%")]
+        [KSPField(isPersistant = true, guiActive = true, guiActiveEditor = true, guiName = "Power Level", guiFormat = "S2", guiUnits = "%")]
         [UI_FloatEdit(scene = UI_Scene.All, minValue = 0.0f, maxValue = 100, incrementLarge = 25.0f, incrementSmall = 5f, incrementSlide = 0.1f)]
         public float CurThrustSetting = 0f;
 
-        [KSPField(isPersistant = false, guiActive = false, guiActiveEditor = true, guiName = "Estimated Isp", guiFormat = "S2", guiUnits = "s")]
+        // Ec to use
+        [KSPField(isPersistant = false, guiActive = true, guiActiveEditor = true, guiName = "Power Input", guiFormat = "S2", guiUnits = " Ec/s")]
+        public float EnergyUsage = 100f;    
+
+        [KSPField(isPersistant = false, guiActive = false, guiActiveEditor = true, guiName = "Estimated Isp:", guiFormat = "S2", guiUnits = " s")]
         public float CurIsp;
-        [KSPField(isPersistant = false, guiActive = false, guiActiveEditor = true, guiName = "Estimated Thrust", guiFormat = "S2", guiUnits = "kN")]
+        [KSPField(isPersistant = false, guiActive = false, guiActiveEditor = true, guiName = "Estimated Thrust:", guiFormat = "S2", guiUnits = " kN")]
         public float CurThrust;
 
         [KSPField(isPersistant = true)]

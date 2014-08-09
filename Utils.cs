@@ -135,6 +135,11 @@ namespace NearFuturePropulsion
             double isp = (((thrust * 1000f) / (9.82d)) / flowRate) / (fuelDensity * 1000f);
             return (float)isp;
         }
+
+        public static float FindPowerUse(float thrust,float isp,Propellant ecPropellant, Propellant fuelPropellant)
+        {
+            return (ecPropellant.ratio / fuelPropellant.ratio) * FindFlowRate(thrust, isp, fuelPropellant);
+        }
     }
 
     

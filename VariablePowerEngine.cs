@@ -43,8 +43,11 @@ namespace NearFuturePropulsion
         [KSPField(isPersistant = true)]
         public bool LinkAllEngines = false;
 
-        [KSPField(isPersistant = true, guiActive = true, guiActiveEditor = true, guiName = "Power Input", guiFormat = "S2", guiUnits = "Ec/s")]
+        [KSPField(isPersistant = true, guiActive = true, guiActiveEditor = true, guiName = "Power Input:", guiFormat = "S2", guiUnits = " Ec/s")]
         public float curPowerUse = 5f;
+
+        [KSPField(isPersistant = true, guiActive = false, guiActiveEditor = true, guiName = "Estimated Isp:", guiFormat = "S2", guiUnits = " s")]
+        public float CurIsp = 0f;
 
         private float lastPowerSetting = -1f;
 
@@ -59,8 +62,8 @@ namespace NearFuturePropulsion
 
         public override string GetInfo()
         {
-            return String.Format("Power Range: {0:F1} kN", PowerCurve.Evaluate(1f)) + "\n" +
-                  String.Format("Isp Range: {0:F0} s", IspCurve.Evaluate(1f)) + "\n";
+            return String.Format("Power Range: {0:F1} - {1:F1} Ec/s", PowerCurve.Evaluate(0f), PowerCurve.Evaluate(1f)) + "\n" +
+                  String.Format("Isp Range: {0:F0} - {1:F1} s", IspCurve.Evaluate(0f), IspCurve.Evaluate(1f)) + "\n";
             
         }
 
@@ -269,7 +272,7 @@ namespace NearFuturePropulsion
             //engine.maxThrust = engine.maxThrust;
 
             curPowerUse = PowerCurve.Evaluate(level);
-
+            CurIsp = IspCurve.Evaluate(level);
             //Debug.Log("Changed Isp to " + engine.atmosphereCurve.Evaluate(0f).ToString());
            // Debug.Log("Changed power use to " +curPowerUse.ToString());
 
