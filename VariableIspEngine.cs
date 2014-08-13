@@ -37,12 +37,12 @@ namespace NearFuturePropulsion
         public float CurThrustSetting = 0f;
 
         // Ec to use
-        [KSPField(isPersistant = false, guiActive = true, guiActiveEditor = true, guiName = "Power Input", guiFormat = "S2", guiUnits = " Ec/s")]
+        [KSPField(isPersistant = false, guiActive = false, guiActiveEditor = true, guiName = "Power Input", guiFormat = "S4", guiUnits = " Ec/s")]
         public float EnergyUsage = 100f;    
 
-        [KSPField(isPersistant = false, guiActive = false, guiActiveEditor = true, guiName = "Estimated Isp:", guiFormat = "S2", guiUnits = " s")]
+        [KSPField(isPersistant = false, guiActive = false, guiActiveEditor = true, guiName = "Estimated Isp:", guiFormat = "S4", guiUnits = " s")]
         public float CurIsp;
-        [KSPField(isPersistant = false, guiActive = false, guiActiveEditor = true, guiName = "Estimated Thrust:", guiFormat = "S2", guiUnits = " kN")]
+        [KSPField(isPersistant = false, guiActive = false, guiActiveEditor = true, guiName = "Estimated Thrust:", guiFormat = "S4", guiUnits = " kN")]
         public float CurThrust;
 
         [KSPField(isPersistant = true)]
@@ -482,7 +482,7 @@ namespace NearFuturePropulsion
         {
             ChangeIspAndThrust(CurThrustSetting / 100f);
             lastThrustSetting = CurThrustSetting;
-            if (LinkAllEngines)
+            if (LinkAllEngines && allVariableEngines != null)
             {
                 foreach (VariableISPEngine variableEngine in allVariableEngines)
                 {

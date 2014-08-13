@@ -43,10 +43,10 @@ namespace NearFuturePropulsion
         [KSPField(isPersistant = true)]
         public bool LinkAllEngines = false;
 
-        [KSPField(isPersistant = true, guiActive = true, guiActiveEditor = true, guiName = "Power Input:", guiFormat = "S2", guiUnits = " Ec/s")]
+        [KSPField(guiActive = false, guiActiveEditor = true, guiName = "Power Input:", guiFormat = "S4", guiUnits = " Ec/s")]
         public float curPowerUse = 5f;
 
-        [KSPField(isPersistant = true, guiActive = false, guiActiveEditor = true, guiName = "Estimated Isp:", guiFormat = "S2", guiUnits = " s")]
+        [KSPField(guiActive = false, guiActiveEditor = true, guiName = "Estimated Isp:", guiFormat = "S4", guiUnits = " s")]
         public float CurIsp = 0f;
 
         private float lastPowerSetting = -1f;
@@ -196,7 +196,7 @@ namespace NearFuturePropulsion
                         //engine.maxThrust = AtmoThrustCurve.Evaluate((float)FlightGlobals.getStaticPressure(vessel.transform.position));
                         engine.atmosphereCurve = new FloatCurve();
                         engine.atmosphereCurve.Add(0f, AtmoIspCurve.Evaluate((float)FlightGlobals.getStaticPressure(vessel.transform.position)));
-                        Debug.Log(AtmoIspCurve.Evaluate((float)FlightGlobals.getStaticPressure(vessel.transform.position)).ToString());
+                       // Debug.Log(AtmoIspCurve.Evaluate((float)FlightGlobals.getStaticPressure(vessel.transform.position)).ToString());
                         frameCounter = 0;
                     }
                     frameCounter++;
@@ -239,7 +239,7 @@ namespace NearFuturePropulsion
         {
             ChangeIspAndPower(CurPowerSetting / 100f);
             lastPowerSetting = CurPowerSetting;
-            if (LinkAllEngines)
+            if (LinkAllEngines && allVariableEngines != null)
             {
                 foreach (VariablePowerEngine variableEngine in allVariableEngines)
                 {
@@ -264,7 +264,7 @@ namespace NearFuturePropulsion
 
         public void ChangeIspAndPower(float level)
         {
-            Debug.Log(engine.engineID);
+            //Debug.Log(engine.engineID);
             engine.atmosphereCurve = new FloatCurve();
             engine.atmosphereCurve.Add(0f, IspCurve.Evaluate(level));
 

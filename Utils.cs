@@ -138,6 +138,7 @@ namespace NearFuturePropulsion
 
         public static float FindPowerUse(float thrust,float isp,Propellant ecPropellant, Propellant fuelPropellant)
         {
+          
             return (ecPropellant.ratio / fuelPropellant.ratio) * FindFlowRate(thrust, isp, fuelPropellant);
         }
     }

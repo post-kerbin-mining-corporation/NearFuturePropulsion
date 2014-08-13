@@ -25,9 +25,8 @@ namespace NearFuturePropulsion
         private FloatCurve AtmoCurve;
         private ModuleEnginesFX engine;
 
-        private bool started = false;
 
-        [KSPField(isPersistant = false, guiActive = true, guiActiveEditor = true, guiName = "Power Input", guiFormat = "S2", guiUnits = " Ec/s")]
+        [KSPField(isPersistant = false, guiActive = false, guiActiveEditor = true, guiName = "Power Input", guiFormat = "S4", guiUnits = " Ec/s")]
         public float EnergyUsage = 100f;
 
         private Propellant fuelPropellant;
@@ -35,7 +34,12 @@ namespace NearFuturePropulsion
 
         public override string GetInfo()
         {
-            return String.Format("Power Input: {0:F1} Ec/s", Utils.FindPowerUse(engine.maxThrust, engine.atmosphereCurve.Evaluate(0f), fuelPropellant, ecPropellant)) + "\n" +
+            if (engine == null || fuelPropellant == null || ecPropellant == null)
+            {
+                SetupPropellants();
+            }
+            
+            return String.Format("Power Input: {0:F1} Ec/s", EnergyUsage) + "\n" +
                   String.Format("Fuel: " + fuelPropellant.name + "\n");
 
         }
@@ -46,9 +50,9 @@ namespace NearFuturePropulsion
             this.moduleName = "Electric Engine";
 
         }
-        public override void OnStart(PartModule.StartState state)
+
+        private void SetupPropellants()
         {
-            base.OnStart(state);
             engine = part.GetComponent<ModuleEnginesFX>();
 
             foreach (Propellant prop in engine.propellants)
@@ -59,6 +63,12 @@ namespace NearFuturePropulsion
                 else
                     ecPropellant = prop;
             }
+        }
+
+        public override void OnStart(PartModule.StartState state)
+        {
+            base.OnStart(state);
+            SetupPropellants();
 
             ThrustCurve = new FloatCurve();
             ThrustCurve.Add(0f, engine.maxThrust);
@@ -71,10 +81,7 @@ namespace NearFuturePropulsion
 
             AtmoCurve.Add(1f,FindIsp(minThrust,rate,fuelPropellant));
 
-            if (state != StartState.Editor)
-                started = true;
-            else
-                started = false;
+            
         }
 
         // finds the flow rate given thrust, isp and the propellant 
