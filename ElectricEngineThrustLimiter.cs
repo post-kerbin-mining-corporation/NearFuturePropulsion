@@ -20,6 +20,9 @@ namespace NearFuturePropulsion
         [KSPField(isPersistant = false)]
         public float minPressure = 1f;
 
+        [KSPField(isPersistant = false)]
+        public string TargetEngine = "";
+
 
         private FloatCurve ThrustCurve;
         private FloatCurve AtmoCurve;
@@ -53,7 +56,23 @@ namespace NearFuturePropulsion
 
         private void SetupPropellants()
         {
-            engine = part.GetComponent<ModuleEnginesFX>();
+
+            if (TargetEngine != "")
+            {
+                ModuleEnginesFX[] engines = part.GetComponents<ModuleEnginesFX>();
+
+                foreach (ModuleEnginesFX ng in engines)
+                {
+                    if (ng.engineID == TargetEngine)
+                    {
+                        engine = ng;
+                    }
+                }
+            }
+            else 
+            {
+                engine = part.GetComponent<ModuleEnginesFX>();
+            }
 
             foreach (Propellant prop in engine.propellants)
             {
