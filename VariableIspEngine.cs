@@ -207,8 +207,8 @@ namespace NearFuturePropulsion
 
             CurIsp = engine.atmosphereCurve.Evaluate(0f);
             CurThrust = engine.maxThrust = ThrustCurve.Evaluate(level);
-            //Debug.Log("Changed Isp toengine.atmosphereCurve.Evaluate(0f) " + engine.atmosphereCurve.Evaluate(0f).ToString());
-            //Debug.Log("Changed thrust to " + engine.maxThrust.ToString());
+            //Utils.Log("VariableIspEngine: Changed Isp toengine.atmosphereCurve.Evaluate(0f) " + engine.atmosphereCurve.Evaluate(0f).ToString());
+            //Utils.Log("VariableIspEngine: Changed thrust to " + engine.maxThrust.ToString());
 
             RecalculateRatios(ThrustCurve.Evaluate(level), IspCurve.Evaluate(level));
 
@@ -239,14 +239,14 @@ namespace NearFuturePropulsion
 
             if (engines.Count == 0)
             {
-                Debug.Log("NFP: VASIMR: Engine Modules not good");
+                Utils.Log("VariableIspEngine: Engine modules not good");
                 return;
             }
 
             SetMode();
 
             if (engine != null)
-                Debug.Log("NFPP: Engine Check Passed");
+                Utils.Log("VariableIspEngine: Engine module check passed");
 
            
 
@@ -254,18 +254,18 @@ namespace NearFuturePropulsion
             if (UseDirectThrottle)
             {
                 ChangeIspAndThrust(engine.requestedThrottle);
-                Debug.Log("NFP: Using direct throttle VASIMR method");
+                Utils.Log("VariableIspEngine: Using direct throttle method");
             }
             else
             {
                 ChangeIspAndThrust(CurThrustSetting / 100f);
-                Debug.Log("NFP: Using tweakable VASIMR method");
+                Utils.Log("VariableIspEngine: Using tweakable method");
             }
             
 
             CalculateCurves();
 
-            Debug.Log("NFPP: Variable ISP engine setup complete");
+            Utils.Log("VariableIspEngine: Setup complete");
            
         }
 
@@ -289,7 +289,7 @@ namespace NearFuturePropulsion
                 if (mod.moduleName == "ModuleEnginesFX")
                 {
                     engines.Add((ModuleEnginesFX)mod);
-                    Debug.Log(((ModuleEnginesFX)mod).runningEffectName);
+                    //Utils.Log("VariableIspEngine: " +  ((ModuleEnginesFX)mod).runningEffectName);
                 }
                 if (mod.moduleName == "MultiModeEngine")
                     multiEngine = mod.GetComponent<MultiModeEngine>();
@@ -306,7 +306,7 @@ namespace NearFuturePropulsion
 
             
             
-            Debug.Log("Changing mode to " + engineModes[EngineModeID].name);
+            Utils.Log("VariableIspEngine: Changing mode to " + engineModes[EngineModeID].name);
             CurrentEngineID = engineModes[EngineModeID].name;
             engine = engines[EngineModeID];
             ThrustCurve = engineModes[EngineModeID].thrustCurve;
@@ -324,10 +324,10 @@ namespace NearFuturePropulsion
                 }
             }
 
-            //Debug.Log("Changed mode to " + engine.engineID);
-            Debug.Log("Fuel: " + fuelPropellant.name);
-            Debug.Log("Thrust Curve: " + ThrustCurve.Evaluate(0f) + " to " + ThrustCurve.Evaluate(1f));
-            Debug.Log("Isp Curve: " + IspCurve.Evaluate(0f) + " to " + IspCurve.Evaluate(1f));
+            //Utils.Log("VariableIspEngine: Changed mode to " + engine.engineID);
+            Utils.Log("VariableIspEngine: Fuel: " + fuelPropellant.name);
+            Utils.Log("VariableIspEngine: Thrust Curve: " + ThrustCurve.Evaluate(0f) + " to " + ThrustCurve.Evaluate(1f));
+            Utils.Log("VariableIspEngine: Isp Curve: " + IspCurve.Evaluate(0f) + " to " + IspCurve.Evaluate(1f));
 
             AdjustVariableThrust();
         }
@@ -457,7 +457,7 @@ namespace NearFuturePropulsion
                    
                     if (CurThrustSetting != lastThrustSetting)
                     {
-                        Debug.Log("Changed Power to " + CurThrustSetting.ToString());
+                        Utils.Log("VariableIspEngine: Changed power to " + CurThrustSetting.ToString());
                         AdjustVariableThrust();
                     }
 
