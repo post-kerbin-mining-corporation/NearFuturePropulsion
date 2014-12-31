@@ -141,15 +141,22 @@ namespace NearFuturePropulsion
           
             return (ecPropellant.ratio / fuelPropellant.ratio) * FindFlowRate(thrust, isp, fuelPropellant);
         }
+        // LOGGING
+        // -------
+        public static void Log(string message)
+        {
+            Debug.Log("NF Propulsion: " + message);
+        }
+
+        public static void LogWarn(string message)
+        {
+            Debug.LogWarning("NF Propulsion: " + message);
+        }
+
+        public static void LogError(string message)
+        {
+            Debug.LogError("NF Propulsion: " + message);
+        }
     }
 
-    
-    public enum RadiatorState
-    {
-        Deployed,
-        Deploying,
-        Retracted,
-        Retracting,
-        Broken,
-    }
 }
