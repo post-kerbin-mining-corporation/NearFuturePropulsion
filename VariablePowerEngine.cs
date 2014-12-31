@@ -30,15 +30,6 @@ namespace NearFuturePropulsion
         [KSPField(isPersistant = false)]
         public FloatCurve IspCurve = new FloatCurve();
 
-        [KSPField(isPersistant = false)]
-        public float MaxPower;
-        [KSPField(isPersistant = false)]
-        public float MinPower;
-        [KSPField(isPersistant = false)]
-        public float MaxIsp;
-        [KSPField(isPersistant = false)]
-        public float MinIsp;
-
         // Link all engines
         [KSPField(isPersistant = true)]
         public bool LinkAllEngines = false;
@@ -193,7 +184,7 @@ namespace NearFuturePropulsion
                 {
                     if (frameCounter >= 10)
                     {
-                        //engine.maxThrust = AtmoThrustCurve.Evaluate((float)FlightGlobals.getStaticPressure(vessel.transform.position));
+                        engine.maxThrust = AtmoThrustCurve.Evaluate((float)FlightGlobals.getStaticPressure(vessel.transform.position));
                         engine.atmosphereCurve = new FloatCurve();
                         engine.atmosphereCurve.Add(0f, AtmoIspCurve.Evaluate((float)FlightGlobals.getStaticPressure(vessel.transform.position)));
                        // Utils.Log(VariablePowerEngine: AtmoIspCurve.Evaluate((float)FlightGlobals.getStaticPressure(vessel.transform.position)).ToString());
@@ -207,15 +198,6 @@ namespace NearFuturePropulsion
 
         private void SetupPropellants()
         {
-
-
-            //PowerCurve = new FloatCurve();
-            //PowerCurve.Add(0f, MinPower);
-            //PowerCurve.Add(1f, MaxPower);
-            //IspCurve = new FloatCurve();
-            //IspCurve.Add(0f, MinIsp);
-            //IspCurve.Add(1f, MaxIsp);
-
             foreach (Propellant prop in engine.propellants)
             {
                 if (prop.name != "ElectricCharge")
