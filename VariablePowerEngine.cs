@@ -153,7 +153,7 @@ namespace NearFuturePropulsion
             SetupPropellants();
             if (engine == null)
             {
-                Debug.Log("NFP: VaPIT: Engine Module not good");
+                Utils.Log("VariablePowerEngine: Engine Module not good");
                 return;
             }
 
@@ -183,20 +183,20 @@ namespace NearFuturePropulsion
 
                 if (CurPowerSetting != lastPowerSetting)
                 {
-                    Debug.Log("Changed Power to " + CurPowerSetting.ToString());
+                    //Utils.Log("VariablePowerEngine: Changed Power to " + CurPowerSetting.ToString());
                     AdjustVariablePower();
                 }
 
                 
                 // Only run atmo tweaking in flight
-                if (KSPAPIExtensions.PartUtils.IsLoaded(GameSceneFilter.Flight))
+                if (HighLogic.LoadedScene == GameScenes.FLIGHT)
                 {
-                    if (frameCounter > 10)
+                    if (frameCounter >= 10)
                     {
                         //engine.maxThrust = AtmoThrustCurve.Evaluate((float)FlightGlobals.getStaticPressure(vessel.transform.position));
                         engine.atmosphereCurve = new FloatCurve();
                         engine.atmosphereCurve.Add(0f, AtmoIspCurve.Evaluate((float)FlightGlobals.getStaticPressure(vessel.transform.position)));
-                       // Debug.Log(AtmoIspCurve.Evaluate((float)FlightGlobals.getStaticPressure(vessel.transform.position)).ToString());
+                       // Utils.Log(VariablePowerEngine: AtmoIspCurve.Evaluate((float)FlightGlobals.getStaticPressure(vessel.transform.position)).ToString());
                         frameCounter = 0;
                     }
                     frameCounter++;
@@ -227,11 +227,7 @@ namespace NearFuturePropulsion
                     ecPropellant = prop;
                 }
             }
-
-            //Debug.Log("Changed mode to " + engine.engineID);
-            //Debug.Log("Fuel: " + fuelPropellant.name);
-            
-            //Debug.Log("Isp Curve: " + IspCurve.Evaluate(0f) + " to " + IspCurve.Evaluate(1f));
+            //Utils.Log("VariablePowerEngine: Isp Curve: " + IspCurve.Evaluate(0f) + " to " + IspCurve.Evaluate(1f));
 
             AdjustVariablePower();
         }
@@ -264,7 +260,7 @@ namespace NearFuturePropulsion
 
         public void ChangeIspAndPower(float level)
         {
-            //Debug.Log(engine.engineID);
+            //Utils.Log("VariablePowerEngine:" + engine.engineID);
             engine.atmosphereCurve = new FloatCurve();
             engine.atmosphereCurve.Add(0f, IspCurve.Evaluate(level));
 
@@ -273,8 +269,8 @@ namespace NearFuturePropulsion
 
             curPowerUse = PowerCurve.Evaluate(level);
             CurIsp = IspCurve.Evaluate(level);
-            //Debug.Log("Changed Isp to " + engine.atmosphereCurve.Evaluate(0f).ToString());
-           // Debug.Log("Changed power use to " +curPowerUse.ToString());
+            //Utils.Log("VariablePowerEngine: Changed Isp to " + engine.atmosphereCurve.Evaluate(0f).ToString());
+           // Utils.Log("VariablePowerEngine: Changed power use to " +curPowerUse.ToString());
 
             RecalculateRatios(curPowerUse, engine.atmosphereCurve.Evaluate(level));
         }
