@@ -66,7 +66,7 @@
       <HintPath>G:\Games\Steam\SteamApps\common\Kerbal Space Program\KSP_Data\Managed\Assembly-UnityScript-firstpass.dll</HintPath>
     </Reference>
     <Reference Include="KSPAPIExtensions">
-      <HintPath>..\..\..\..\Games\Steam\SteamApps\common\Kerbal Space Program\GameData\KSPAPIExtensions.dll</HintPath>
+      <HintPath>..\..\KSPAIPE\KSPAPIExtensions.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -80,7 +80,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ElectricEngineThrustLimiter.cs" />
     <Compile Include="NearFuturePropulsion.cs" />
     <Compile Include="NFPAnimateHeat.cs" />
     <Compile Include="VariableIspEngine.cs" />

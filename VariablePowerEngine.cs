@@ -126,6 +126,7 @@ namespace NearFuturePropulsion
         private void LoadEngineModules()
         {
             engine = part.GetComponent<ModuleEnginesFX>();
+            
             //PartModuleList modules = part.Modules;
 
             //foreach (PartModule mod in part.Modules)

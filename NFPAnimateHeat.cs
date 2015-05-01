@@ -38,11 +38,11 @@ namespace NearFuturePropulsion
 
         public void FixedUpdate()
         {
-          
-            float heatPercent = part.temperature/part.maxTemp;
+
+            double heatPercent = part.temperature / part.maxTemp;
             foreach (AnimationState state in heatStates)
             {
-                state.normalizedTime = heatPercent;
+                state.normalizedTime = (float)heatPercent;
             }
         }
     }

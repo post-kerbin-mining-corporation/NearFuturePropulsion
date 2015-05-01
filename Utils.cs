@@ -37,7 +37,8 @@ namespace NearFuturePropulsion
         // Returns true if ship is it atmoshpere
         public static bool VesselInAtmosphere(Vessel vessel)
         {
-           return vessel.heightFromSurface < vessel.mainBody.maxAtmosphereAltitude;
+            return vessel.atmDensity <= 0d; 
+           //return vessel.heightFromSurface < vessel.mainBody.maxAtmosphereAltitude;
         }
 
     
