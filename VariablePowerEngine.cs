@@ -248,6 +248,7 @@ namespace NearFuturePropulsion
 
         public void ChangeIspAndPower(float level)
         {
+            curPowerUse = PowerCurve.Evaluate(level);
 
             RecalculateRatios(curPowerUse, IspCurve.Evaluate(level));
 
@@ -258,9 +259,9 @@ namespace NearFuturePropulsion
             engine.atmosphereCurve.Add(4f, 0.001f);
 
             engine.heatProduction = HeatCurve.Evaluate(level);
-           
-            curPowerUse = PowerCurve.Evaluate(level);
+
             CurIsp = IspCurve.Evaluate(level);
+            
             //Utils.Log("VariablePowerEngine: Changed Isp to " + engine.atmosphereCurve.Evaluate(0f).ToString());
            // Utils.Log("VariablePowerEngine: Changed power use to " +curPowerUse.ToString());
 
@@ -277,9 +278,17 @@ namespace NearFuturePropulsion
         {
             double fuelDensity = PartResourceLibrary.Instance.GetDefinition(fuelPropellant.name).density;
             double fuelRate = ((ConstantThrust) / (desiredisp * engine.g));
-            float ecRate = desiredPower / (float)fuelRate;
+            float fuelFlowRate = (float)fuelRate;
+            
+            fuelRate = fuelRate / fuelDensity;
 
-            engine.maxFuelFlow = (float)fuelRate;
+
+            float ecRate = desiredPower / (float)fuelRate;
+            Debug.Log(ecRate);
+            fuelPropellant.ratio = 1f;
+            ecPropellant.ratio = ecRate;
+
+            engine.maxFuelFlow = fuelFlowRate;
 
             //fuelPropellant.ratio = 0.1f;
             //ecPropellant.ratio = fuelPropellant.ratio * ecRate;
