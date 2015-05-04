@@ -22,6 +22,9 @@ namespace NearFuturePropulsion
         public float CurPowerSetting = 0f;
 
         [KSPField(isPersistant = false)]
+        public float ConstantThrust = 10f;
+
+        [KSPField(isPersistant = false)]
         public FloatCurve HeatCurve = new FloatCurve();
 
         [KSPField(isPersistant = false)]
@@ -183,15 +186,17 @@ namespace NearFuturePropulsion
                 // Only run atmo tweaking in flight
                 if (HighLogic.LoadedScene == GameScenes.FLIGHT)
                 {
-                    if (frameCounter >= 10)
-                    {
-                        engine.maxThrust = AtmoThrustCurve.Evaluate((float)FlightGlobals.getStaticPressure(vessel.transform.position));
-                        engine.atmosphereCurve = new FloatCurve();
-                        engine.atmosphereCurve.Add(0f, AtmoIspCurve.Evaluate((float)FlightGlobals.getStaticPressure(vessel.transform.position)));
-                       // Utils.Log(VariablePowerEngine: AtmoIspCurve.Evaluate((float)FlightGlobals.getStaticPressure(vessel.transform.position)).ToString());
-                        frameCounter = 0;
-                    }
-                    frameCounter++;
+                    //if (frameCounter >= 10)
+                    //{
+                    //    engine.maxThrust = AtmoThrustCurve.Evaluate((float)FlightGlobals.getStaticPressure(vessel.transform.position));
+                    //    engine.atmosphereCurve = new FloatCurve();
+                    //    engine.atmosphereCurve.Add(0f, AtmoIspCurve.Evaluate((float)FlightGlobals.getStaticPressure(vessel.transform.position)));
+                    //    engine.atmosphereCurve.Add(1f, 100f);
+                    //    engine.atmosphereCurve.Add(4f, 0.001f);
+                    //   // Utils.Log(VariablePowerEngine: AtmoIspCurve.Evaluate((float)FlightGlobals.getStaticPressure(vessel.transform.position)).ToString());
+                    //    frameCounter = 0;
+                    //}
+                    //frameCounter++;
                 }
             }
 
@@ -243,19 +248,23 @@ namespace NearFuturePropulsion
 
         public void ChangeIspAndPower(float level)
         {
+
+            RecalculateRatios(curPowerUse, IspCurve.Evaluate(level));
+
             //Utils.Log("VariablePowerEngine:" + engine.engineID);
             engine.atmosphereCurve = new FloatCurve();
             engine.atmosphereCurve.Add(0f, IspCurve.Evaluate(level));
+            engine.atmosphereCurve.Add(1f, 100f);
+            engine.atmosphereCurve.Add(4f, 0.001f);
 
             engine.heatProduction = HeatCurve.Evaluate(level);
-            //engine.maxThrust = engine.maxThrust;
-
+           
             curPowerUse = PowerCurve.Evaluate(level);
             CurIsp = IspCurve.Evaluate(level);
             //Utils.Log("VariablePowerEngine: Changed Isp to " + engine.atmosphereCurve.Evaluate(0f).ToString());
            // Utils.Log("VariablePowerEngine: Changed power use to " +curPowerUse.ToString());
 
-            RecalculateRatios(curPowerUse, engine.atmosphereCurve.Evaluate(level));
+            
         }
 
         public void ChangeIspAndPowerLinked(VariablePowerEngine other, float level)
@@ -267,13 +276,15 @@ namespace NearFuturePropulsion
         private void RecalculateRatios(float desiredPower, float desiredisp)
         {
             double fuelDensity = PartResourceLibrary.Instance.GetDefinition(fuelPropellant.name).density;
-            double fuelRate = ((engine.maxThrust * 1000f) / (desiredisp * 9.82d)) / (fuelDensity * 1000f);
+            double fuelRate = ((ConstantThrust) / (desiredisp * engine.g));
             float ecRate = desiredPower / (float)fuelRate;
 
-            fuelPropellant.ratio = 0.1f;
-            ecPropellant.ratio = fuelPropellant.ratio * ecRate;
+            engine.maxFuelFlow = (float)fuelRate;
 
-            CalculateCurves();
+            //fuelPropellant.ratio = 0.1f;
+            //ecPropellant.ratio = fuelPropellant.ratio * ecRate;
+
+            //CalculateCurves();
         }
 
         // finds the flow rate given thrust, isp and the propellant 

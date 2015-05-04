@@ -200,6 +200,8 @@ namespace NearFuturePropulsion
         public void ChangeIspAndThrust(float level)
         {
 
+            RecalculateRatios(ThrustCurve.Evaluate(level), IspCurve.Evaluate(level));
+
             engine.atmosphereCurve = new FloatCurve();
             engine.atmosphereCurve.Add(0f, IspCurve.Evaluate(level));
 
@@ -208,23 +210,22 @@ namespace NearFuturePropulsion
             CurIsp = engine.atmosphereCurve.Evaluate(0f);
             CurThrust = engine.maxThrust = ThrustCurve.Evaluate(level);
             //Utils.Log("VariableIspEngine: Changed Isp toengine.atmosphereCurve.Evaluate(0f) " + engine.atmosphereCurve.Evaluate(0f).ToString());
-            //Utils.Log("VariableIspEngine: Changed thrust to " + engine.maxThrust.ToString());
-
-            RecalculateRatios(ThrustCurve.Evaluate(level), IspCurve.Evaluate(level));
-
-            
+            //Utils.Log("VariableIspEngine: Changed thrust to " + engine.maxThrust.ToString());            
         }
 
         private void RecalculateRatios(float desiredthrust, float desiredisp)
         {
             double fuelDensity = PartResourceLibrary.Instance.GetDefinition(fuelPropellant.name).density;
-            double fuelRate = ((desiredthrust * 1000f) / (desiredisp * 9.82d)) / (fuelDensity*1000f);
+            double fuelRate = ((desiredthrust ) / (desiredisp * 9.82d)) ;
+            engine.maxFuelFlow = (float)fuelRate;
+            fuelRate = fuelRate / fuelDensity;
             float ecRate = EnergyUsage / (float)fuelRate;
+            
 
             fuelPropellant.ratio = 0.1f;
             ecPropellant.ratio = fuelPropellant.ratio * ecRate;
 
-            CalculateCurves();
+            //CalculateCurves();
         }
 
         public override void OnStart(PartModule.StartState state)
@@ -304,8 +305,6 @@ namespace NearFuturePropulsion
             else
                 EngineModeID = 1;
 
-            
-            
             Utils.Log("VariableIspEngine: Changing mode to " + engineModes[EngineModeID].name);
             CurrentEngineID = engineModes[EngineModeID].name;
             engine = engines[EngineModeID];
@@ -336,18 +335,18 @@ namespace NearFuturePropulsion
 
         private void CalculateCurves()
         {
-            AtmoThrustCurve = new FloatCurve();
-            AtmoThrustCurve.Add(0f, engine.maxThrust);
-            AtmoThrustCurve.Add(1f, 0f);
+           // AtmoThrustCurve = new FloatCurve();
+           // AtmoThrustCurve.Add(0f, engine.maxThrust);
+           // AtmoThrustCurve.Add(1f, 0f);
 
-            AtmoIspCurve = new FloatCurve();
-            AtmoIspCurve.Add(0f, engine.atmosphereCurve.Evaluate(0f));
+           // AtmoIspCurve = new FloatCurve();
+           // AtmoIspCurve.Add(0f, engine.atmosphereCurve.Evaluate(0f));
 
             
 
-            float rate = FindFlowRate(engine.maxThrust, engine.atmosphereCurve.Evaluate(0f), fuelPropellant);
+           // float rate = FindFlowRate(engine.maxThrust, engine.atmosphereCurve.Evaluate(0f), fuelPropellant);
 
-            AtmoIspCurve.Add(1f, FindIsp(minThrust, rate, fuelPropellant));
+            //AtmoIspCurve.Add(1f, FindIsp(minThrust, rate, fuelPropellant));
         }
 
         // finds the flow rate given thrust, isp and the propellant 
