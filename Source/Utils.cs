@@ -10,7 +10,7 @@ namespace NearFuturePropulsion
 {
     internal static class Utils
     {
-    
+        public const double GRAVITY = 9.80665;    
 
         // This function loads up some animationstates
         public static AnimationState[] SetUpAnimation(string animationName, Part part)
@@ -113,27 +113,27 @@ namespace NearFuturePropulsion
         public static float FindFlowRate(float thrust, float isp, Propellant fuelPropellant)
         {
             double fuelDensity = PartResourceLibrary.Instance.GetDefinition(fuelPropellant.name).density;
-            double fuelRate = ((thrust * 1000f) / (isp * 9.82d)) / (fuelDensity * 1000f);
+            double fuelRate = ((thrust * 1000f) / (isp * GRAVITY)) / (fuelDensity * 1000f);
             return (float)fuelRate;
         }
 
         public static float FindFlowRate(float thrust, float isp, string fuelPropellant)
         {
             double fuelDensity = PartResourceLibrary.Instance.GetDefinition(fuelPropellant).density;
-            double fuelRate = ((thrust * 1000f) / (isp * 9.82d)) / (fuelDensity * 1000f);
+            double fuelRate = ((thrust * 1000f) / (isp * GRAVITY)) / (fuelDensity * 1000f);
             return (float)fuelRate;
         }
 
         public static float FindIsp(float thrust, float flowRate, Propellant fuelPropellant)
         {
             double fuelDensity = PartResourceLibrary.Instance.GetDefinition(fuelPropellant.name).density;
-            double isp = (((thrust * 1000f) / (9.82d)) / flowRate) / (fuelDensity * 1000f);
+            double isp = (((thrust * 1000f) / (GRAVITY)) / flowRate) / (fuelDensity * 1000f);
             return (float)isp;
         }
         public static float FindIsp(float thrust, float flowRate, string fuelPropellant)
         {
             double fuelDensity = PartResourceLibrary.Instance.GetDefinition(fuelPropellant).density;
-            double isp = (((thrust * 1000f) / (9.82d)) / flowRate) / (fuelDensity * 1000f);
+            double isp = (((thrust * 1000f) / (GRAVITY)) / flowRate) / (fuelDensity * 1000f);
             return (float)isp;
         }
 

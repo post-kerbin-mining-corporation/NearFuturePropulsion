@@ -300,14 +300,14 @@ namespace NearFuturePropulsion
         private float FindFlowRate(float thrust, float isp, Propellant fuelPropellant)
         {
             double fuelDensity = PartResourceLibrary.Instance.GetDefinition(fuelPropellant.name).density;
-            double fuelRate = ((thrust * 1000f) / (isp * 9.82d)) / (fuelDensity * 1000f);
+            double fuelRate = ((thrust * 1000f) / (isp * Utils.GRAVITY)) / (fuelDensity * 1000f);
             return (float)fuelRate;
         }
 
         private float FindIsp(float thrust, float flowRate, Propellant fuelPropellant)
         {
             double fuelDensity = PartResourceLibrary.Instance.GetDefinition(fuelPropellant.name).density;
-            double isp = (((thrust * 1000f) / (9.82d)) / flowRate) / (fuelDensity * 1000f);
+            double isp = (((thrust * 1000f) / (Utils.GRAVITY)) / flowRate) / (fuelDensity * 1000f);
             return (float)isp;
         }
     }
