@@ -216,7 +216,7 @@ namespace NearFuturePropulsion
         private void RecalculateRatios(float desiredthrust, float desiredisp)
         {
             double fuelDensity = PartResourceLibrary.Instance.GetDefinition(fuelPropellant.name).density;
-            double fuelRate = ((desiredthrust ) / (desiredisp * 9.82d)) ;
+            double fuelRate = ((desiredthrust ) / (desiredisp * Utils.GRAVITY)) ;
             engine.maxFuelFlow = (float)fuelRate;
             fuelRate = fuelRate / fuelDensity;
             float ecRate = EnergyUsage / (float)fuelRate;
@@ -353,14 +353,14 @@ namespace NearFuturePropulsion
         private float FindFlowRate(float thrust, float isp, Propellant fuelPropellant)
         {
             double fuelDensity = PartResourceLibrary.Instance.GetDefinition(fuelPropellant.name).density;
-            double fuelRate = ((thrust * 1000f) / (isp * 9.82d)) / (fuelDensity * 1000f);
+            double fuelRate = ((thrust * 1000f) / (isp * Utils.GRAVITY)) / (fuelDensity * 1000f);
             return (float)fuelRate;
         }
 
         private float FindIsp(float thrust, float flowRate, Propellant fuelPropellant)
         {
             double fuelDensity = PartResourceLibrary.Instance.GetDefinition(fuelPropellant.name).density;
-            double isp = (((thrust * 1000f) / (9.82d)) / flowRate) / (fuelDensity * 1000f);
+            double isp = (((thrust * 1000f) / (Utils.GRAVITY)) / flowRate) / (fuelDensity * 1000f);
             return (float)isp;
         }
 
