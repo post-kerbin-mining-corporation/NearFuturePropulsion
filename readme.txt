@@ -18,6 +18,14 @@ As this pack bundles ModuleManager v2.6.6 please check to make sure you have an 
 
 I recommend the use of the Community Tech Tree (http://forum.kerbalspaceprogram.com/threads/100385-Community-Tech-Tree-1-0), which will place these engines in a set of nodes located after the stock Ion Propulsion node.
 
+============
+KSP-MINI-AVC
+============
+
+This mod includes version checking using MiniAVC (http://forum.kerbalspaceprogram.com/threads/79745). 
+If you opt-in, it will use the internet to check whether there is a new version available. Data is only read from the internet and no personal information is sent. 
+For a more comprehensive version checking experience, please download the KSP-AVC Plugin (http://forum.kerbalspaceprogram.com/threads/79745).
+
 =========
 LICENSING
 =========
