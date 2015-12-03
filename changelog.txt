@@ -1,3 +1,10 @@
+v0.5.4
+------
+- KSP 1.05 update
+- Added MiniAVC
+- Updated CRP version
+- Updated bundled MM version
+
 v0.5.3
 ------
 - Removed some unfinished parts that weren't supposed to be included
