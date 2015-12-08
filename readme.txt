@@ -1,11 +1,11 @@
 =================================
-NEAR FUTURE PROPULSION PACK 0.5.4
+NEAR FUTURE PROPULSION PACK 0.6.0
 =================================
 
 This pack contains the advanced electric propulsion technologies
 
 - Advanced Ion/Plasma Engines of many types
-- Two new fuels: LiquidHydrogen and ArgonGas, with various tanks available
+- Two new fuels: Lithium and ArgonGas, with various tanks available
 
 ============
 INSTALLATION
