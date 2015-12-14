@@ -204,6 +204,8 @@ namespace NearFuturePropulsion
 
             engine.atmosphereCurve = new FloatCurve();
             engine.atmosphereCurve.Add(0f, IspCurve.Evaluate(level));
+            engine.atmosphereCurve.Add(1f, 100f);
+            engine.atmosphereCurve.Add(4f, 1f);
 
             engine.maxThrust = ThrustCurve.Evaluate(level);
 

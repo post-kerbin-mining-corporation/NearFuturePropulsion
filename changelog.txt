@@ -6,7 +6,6 @@ v0.6.0
 - Updated bundled MM version
 - Fixed incorrect thrust values on PITs
 - Fixed incorrect g0 value for variable Isp/power engines
-- 
 
 v0.5.3
 ------
