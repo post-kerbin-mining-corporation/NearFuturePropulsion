@@ -13,8 +13,8 @@ INSTALLATION
 
 To install, place the GameData folder inside your Kerbal Space Program folder. If asked to overwrite files, do so. 
 
-As this pack bundles ModuleManager v2.6.6 please check to make sure you have an older or concurrent version of the following files before overwriting:
-· ModuleManager.2.6.6.dll
+As this pack bundles ModuleManager v2.6.13 please check to make sure you have an older or concurrent version of the following files before overwriting:
+· ModuleManager.2.6.13.dll
 
 I recommend the use of the Community Tech Tree (http://forum.kerbalspaceprogram.com/threads/100385-Community-Tech-Tree-1-0), which will place these engines in a set of nodes located after the stock Ion Propulsion node.
 

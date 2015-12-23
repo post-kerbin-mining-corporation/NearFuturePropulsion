@@ -1,9 +1,17 @@
 v0.6.0
 ------
 - KSP 1.05 update
-- Added MiniAVC
+- Added MiniAVC version checking
 - Updated CRP version
 - Updated bundled MM version
+- MPDTs now run on Lithium
+- Added Lithium tankage in 2.5m and 1.25m sizes
+- Added Lithium processing to the ISRU and mini ISRU
+- Added Xenon mode to VASIMRs for thrust increases and higher efficiencies
+- Removed LH2 mode from VASIMRs
+- Removed all LH2 tankage for reworking
+- Removed LH2 processing for ISRUs
+- Removed optional LH2 NTRs patch for reworking
 - Fixed incorrect thrust values on PITs
 - Fixed incorrect g0 value for variable Isp/power engines
 
