@@ -1,3 +1,12 @@
+v0.6.1
+------
+- Updated CRP version
+- Removed LH2 tanks that were erronously included from download
+- Fixed normal map of small 2.5m lithium tank
+- Fixed one of the 2.5m Lithium tanks having an incorrectly specified normal map
+- Fixed 2.5m VASIMR mentioning Hydrogen in one of its modes
+- Fixed 0.625m VASIMR mentioning Hydrogen in its part description
+
 v0.6.0
 ------
 - KSP 1.05 update
