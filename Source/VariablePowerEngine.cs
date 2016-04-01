@@ -1,4 +1,4 @@
-﻿using KSPAPIExtensions;
+﻿
 /// VariablePowerEngine
 /// ---------------------------------------------------
 /// A module that allows the Power use and Isp of an engine to be varied via a GUI
@@ -17,8 +17,7 @@ namespace NearFuturePropulsion
 
 
         // Current power setting
-        [KSPField(isPersistant = true, guiActive = true, guiActiveEditor = true, guiName = "Power Level", guiFormat = "S2", guiUnits = "%")]
-        [UI_FloatEdit(scene = UI_Scene.All, minValue = 0.0f, maxValue = 100, incrementLarge = 25.0f, incrementSmall = 5f, incrementSlide = 0.1f)]
+        [KSPField(isPersistant = true, guiActive = true, guiActiveEditor = true, guiName = "Power Level"), UI_FloatRange(minValue = 0f, maxValue = 100f, stepIncrement = 1f)]
         public float CurPowerSetting = 0f;
 
         [KSPField(isPersistant = false)]
@@ -37,10 +36,10 @@ namespace NearFuturePropulsion
         [KSPField(isPersistant = true)]
         public bool LinkAllEngines = false;
 
-        [KSPField(guiActive = false, guiActiveEditor = true, guiName = "Power Input:", guiFormat = "S4", guiUnits = " Ec/s")]
+        [KSPField(guiActive = false, guiActiveEditor = true, guiName = "Power Input:", guiUnits = " Ec/s")]
         public float curPowerUse = 5f;
 
-        [KSPField(guiActive = false, guiActiveEditor = true, guiName = "Estimated Isp:", guiFormat = "S4", guiUnits = " s")]
+        [KSPField(guiActive = false, guiActiveEditor = true, guiName = "Estimated Isp:", guiUnits = " s")]
         public float CurIsp = 0f;
 
         private float lastPowerSetting = -1f;

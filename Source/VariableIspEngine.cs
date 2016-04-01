@@ -1,5 +1,4 @@
-﻿using KSPAPIExtensions;
-/// VariableIspEngine
+﻿/// VariableIspEngine
 /// ---------------------------------------------------
 /// A module that allows the Isp and thrust of an engine to be varied via a GUI
 /// 
@@ -8,7 +7,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using UnityEngine;
-
+using UnityEngine.UI;
 
 namespace NearFuturePropulsion
 {
@@ -29,20 +28,18 @@ namespace NearFuturePropulsion
         [KSPField(isPersistant = false)]
         public FloatCurve IspCurve = new FloatCurve();
 
-        
-
+ 
         // Current thrust setting
-        [KSPField(isPersistant = true, guiActive = true, guiActiveEditor = true, guiName = "Power Level", guiFormat = "S2", guiUnits = "%")]
-        [UI_FloatEdit(scene = UI_Scene.All, minValue = 0.0f, maxValue = 100, incrementLarge = 25.0f, incrementSmall = 5f, incrementSlide = 0.1f)]
+        [KSPField(isPersistant = true, guiActive = true, guiActiveEditor = true, guiName = "Power Level") , UI_FloatRange(minValue = 0f, maxValue = 100f, stepIncrement = 1f)]
         public float CurThrustSetting = 0f;
 
         // Ec to use
-        [KSPField(isPersistant = false, guiActive = false, guiActiveEditor = true, guiName = "Power Input", guiFormat = "S4", guiUnits = " Ec/s")]
+        [KSPField(isPersistant = false, guiActive = false, guiActiveEditor = true, guiName = "Power Input", guiUnits = " Ec/s")]
         public float EnergyUsage = 100f;    
 
-        [KSPField(isPersistant = false, guiActive = false, guiActiveEditor = true, guiName = "Estimated Isp:", guiFormat = "S4", guiUnits = " s")]
+        [KSPField(isPersistant = false, guiActive = false, guiActiveEditor = true, guiName = "Estimated Isp:", guiUnits = " s")]
         public float CurIsp;
-        [KSPField(isPersistant = false, guiActive = false, guiActiveEditor = true, guiName = "Estimated Thrust:", guiFormat = "S4", guiUnits = " kN")]
+        [KSPField(isPersistant = false, guiActive = false, guiActiveEditor = true, guiName = "Estimated Thrust:", guiUnits = " kN")]
         public float CurThrust;
 
         [KSPField(isPersistant = true)]
@@ -463,18 +460,7 @@ namespace NearFuturePropulsion
                     }
 
                 }
-                // Only run atmo tweaking in flight
-                if (KSPAPIExtensions.PartUtils.IsLoaded(GameSceneFilter.Flight))
-                {
-                    //if (frameCounter > 10)
-                    //{
-                    //    engine.maxThrust = AtmoThrustCurve.Evaluate((float)FlightGlobals.getStaticPressure(vessel.transform.position));
-                    //    engine.atmosphereCurve = new FloatCurve();
-                    //    engine.atmosphereCurve.Add(0f, AtmoIspCurve.Evaluate((float)FlightGlobals.getStaticPressure(vessel.transform.position)));
-                    //    frameCounter = 0;
-                    //}
-                    //frameCounter++;
-                }
+                
             }
             
         }
