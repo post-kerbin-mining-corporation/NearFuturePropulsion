@@ -1,3 +1,16 @@
+v0.7.0
+------
+- KSP 1.1
+- Updated CRP version
+- Updated MM version
+- Removed KSPAPIExtensions dependency
+- Added part search tags
+- Minor engine rebalance
+- Major tank mass rebalance
+- New MPDT models in the 0.625m and 1.25m categories
+- All 0.625m engines are now surface attachable
+- Added Streetwind's electric engine tweaking patch 
+
 v0.6.1
 ------
 - Updated CRP version
