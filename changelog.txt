@@ -1,3 +1,13 @@
+v0.7.2
+------
+- Updated bundled CRP
+- Cleaned up some OSX garbage that snuck in
+
+v0.7.1
+------
+- KSP 1.1.2
+- Updated ModuleManager version
+
 v0.7.0
 ------
 - KSP 1.1
