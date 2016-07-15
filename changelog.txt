@@ -1,3 +1,8 @@
+v0.7.4
+------
+- Added AIRes Atmospheric Sounder
+- Added M-2 Cryogenic Gas Separator
+
 v0.7.3
 ------
 - KSP 1.1.3
