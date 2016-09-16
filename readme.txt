@@ -1,5 +1,5 @@
 =================================
-NEAR FUTURE PROPULSION PACK 0.7.0
+NEAR FUTURE PROPULSION PACK 0.7.5
 =================================
 
 This pack contains the advanced electric propulsion technologies
@@ -12,8 +12,8 @@ DEPENDENCIES
 ============
 
 Required:
-- Community Resource Pack (0.5.0)
-- ModuleManager (2.6.22)
+- Community Resource Pack (0.5.4)
+- ModuleManager (2.6.25)
 
 Optional
 - Community Tech Tree (v2.2+)

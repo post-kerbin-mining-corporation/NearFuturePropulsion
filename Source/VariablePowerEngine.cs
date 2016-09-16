@@ -1,21 +1,16 @@
-﻿
-/// VariablePowerEngine
+﻿/// VariablePowerEngine
 /// ---------------------------------------------------
-/// A module that allows the Power use and Isp of an engine to be varied via a GUI
+/// A module that allows the Power use and Isp of an engine to be varied via a part slider
 /// 
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Text;
 using UnityEngine;
-
 
 namespace NearFuturePropulsion
 {
     public class VariablePowerEngine:PartModule
     {
-
-
         // Current power setting
         [KSPField(isPersistant = true, guiActive = true, guiActiveEditor = true, guiName = "Power Level"), UI_FloatRange(minValue = 0f, maxValue = 100f, stepIncrement = 1f)]
         public float CurPowerSetting = 0f;
@@ -63,9 +58,9 @@ namespace NearFuturePropulsion
         [KSPEvent(guiActive = true, guiName = "Link All Variable Engines", active = true)]
         public void LinkEngines()
         {
-            foreach (VariablePowerEngine variableEngine in allVariableEngines)
+            for (int i = 0; i < allVariableEngines.Count; i++)
             {
-                variableEngine.LinkAllEngines = true;
+                allVariableEngines[i].LinkAllEngines = true;
             }
             LinkAllEngines = true;
         }
@@ -73,14 +68,12 @@ namespace NearFuturePropulsion
         [KSPEvent(guiActive = true, guiName = "Unlink All Variable Engines", active = false)]
         public void UnlinkEngines()
         {
-            foreach (VariablePowerEngine variableEngine in allVariableEngines)
+            for (int i = 0; i < allVariableEngines.Count; i++)
             {
-                variableEngine.LinkAllEngines = false;
+                allVariableEngines[i].LinkAllEngines = false;
             }
             LinkAllEngines = false;
         }
-
-
 
         // Actions
         [KSPAction("Link Engines")]
@@ -99,9 +92,9 @@ namespace NearFuturePropulsion
         public void ToggleLinkEnginesAction(KSPActionParam param)
         {
             LinkAllEngines = !LinkAllEngines;
-            foreach (VariablePowerEngine variableEngine in allVariableEngines)
+            for (int i = 0; i < allVariableEngines.Count; i++)
             {
-                variableEngine.LinkAllEngines = !variableEngine.LinkAllEngines;
+                allVariableEngines[i].LinkAllEngines = !allVariableEngines[i].LinkAllEngines;
             }
         }
 
@@ -110,10 +103,10 @@ namespace NearFuturePropulsion
         private void SetupVariableEngines()
         {
             allVariableEngines = new List<VariablePowerEngine>();
-            List<Part> allParts = this.vessel.parts;
-            foreach (Part pt in allParts)
+
+            for (int j = 0; j < this.vessel.parts.Count; j++)
             {
-                PartModuleList pml = pt.Modules;
+                PartModuleList pml = this.vessel.parts[j].Modules;
                 for (int i = 0; i < pml.Count; i++)
                 {
                     PartModule curModule = pml.GetModule(i);
@@ -128,16 +121,7 @@ namespace NearFuturePropulsion
         private void LoadEngineModules()
         {
             engine = part.GetComponent<ModuleEnginesFX>();
-            
-            //PartModuleList modules = part.Modules;
-
-            //foreach (PartModule mod in part.Modules)
-            //{
-            //    if (mod.moduleName == "ModuleEnginesFX")
-            //    {
-            //        engine=(ModuleEnginesFX)mod;
-            //    }
-            //}
+       
         }
 
 
@@ -166,52 +150,31 @@ namespace NearFuturePropulsion
                 Events["UnlinkEngines"].active = LinkAllEngines;
             }
         }
-        int frameCounter = 0;
+       
 
         public void FixedUpdate()
         {
-
-
             if (engine != null)
             {
-
                 if (CurPowerSetting != lastPowerSetting)
                 {
                     //Utils.Log("VariablePowerEngine: Changed Power to " + CurPowerSetting.ToString());
                     AdjustVariablePower();
                 }
-
-                
-                // Only run atmo tweaking in flight
-                if (HighLogic.LoadedScene == GameScenes.FLIGHT)
-                {
-                    //if (frameCounter >= 10)
-                    //{
-                    //    engine.maxThrust = AtmoThrustCurve.Evaluate((float)FlightGlobals.getStaticPressure(vessel.transform.position));
-                    //    engine.atmosphereCurve = new FloatCurve();
-                    //    engine.atmosphereCurve.Add(0f, AtmoIspCurve.Evaluate((float)FlightGlobals.getStaticPressure(vessel.transform.position)));
-                    //    engine.atmosphereCurve.Add(1f, 100f);
-                    //    engine.atmosphereCurve.Add(4f, 0.001f);
-                    //   // Utils.Log(VariablePowerEngine: AtmoIspCurve.Evaluate((float)FlightGlobals.getStaticPressure(vessel.transform.position)).ToString());
-                    //    frameCounter = 0;
-                    //}
-                    //frameCounter++;
-                }
             }
-
         }
 
         private void SetupPropellants()
         {
-            foreach (Propellant prop in engine.propellants)
+            for (int i = 0; i < engine.propellants.Count; i++ )
             {
-                if (prop.name != "ElectricCharge")
+                if (engine.propellants[i].name != "ElectricCharge")
                 {
-                    fuelPropellant = prop;
+                    fuelPropellant = engine.propellants[i];
                 }
                 else
                 {
-                    ecPropellant = prop;
+                    ecPropellant = engine.propellants[i];
                 }
             }
             //Utils.Log("VariablePowerEngine: Isp Curve: " + IspCurve.Evaluate(0f) + " to " + IspCurve.Evaluate(1f));
@@ -224,9 +187,9 @@ namespace NearFuturePropulsion
             lastPowerSetting = CurPowerSetting;
             if (LinkAllEngines && allVariableEngines != null)
             {
-                foreach (VariablePowerEngine variableEngine in allVariableEngines)
+                for (int i = 0; i< allVariableEngines.Count; i++)
                 {
-                    variableEngine.ChangeIspAndPowerLinked(this, CurPowerSetting / 100f);
+                    allVariableEngines[i].ChangeIspAndPowerLinked(this, CurPowerSetting / 100f);
                 }
             }
         }
@@ -262,9 +225,7 @@ namespace NearFuturePropulsion
             CurIsp = IspCurve.Evaluate(level);
             
             //Utils.Log("VariablePowerEngine: Changed Isp to " + engine.atmosphereCurve.Evaluate(0f).ToString());
-           // Utils.Log("VariablePowerEngine: Changed power use to " +curPowerUse.ToString());
-
-            
+           // Utils.Log("VariablePowerEngine: Changed power use to " +curPowerUse.ToString());     
         }
 
         public void ChangeIspAndPowerLinked(VariablePowerEngine other, float level)
@@ -288,11 +249,6 @@ namespace NearFuturePropulsion
             ecPropellant.ratio = ecRate;
 
             engine.maxFuelFlow = fuelFlowRate;
-
-            //fuelPropellant.ratio = 0.1f;
-            //ecPropellant.ratio = fuelPropellant.ratio * ecRate;
-
-            //CalculateCurves();
         }
 
         // finds the flow rate given thrust, isp and the propellant 
