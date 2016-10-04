@@ -1,7 +1,16 @@
-v0.7.5
+v0.8.0
 ------
 - KSP 1.2 recompile
 - Some code cleanups
+- Added GW3 'Triplet' Nested-Channel Hall Thruster
+- Added KO-1 Pulsed Plasma RCS Block
+- Added IW-201 Gridded RCS Thruster
+- Added SPZ-5167 Hall Effect RCS Thruster
+- Added LiFt-1 Magnetoplasmadynamic RCS Thruster
+- Added LiFt-3 Magnetoplasmadynamic RCS Block
+- Added LiFt-4 Magnetoplasmadynamic RCS Block
+- Added LiFt-5 Magnetoplasmadynamic RCS Block
+- New models, alternate compact versions and FX for 0.625m Hall effect and gridded thrusters
 
 v0.7.4
 ------

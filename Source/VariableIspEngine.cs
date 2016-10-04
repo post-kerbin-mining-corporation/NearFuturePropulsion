@@ -231,7 +231,7 @@ namespace NearFuturePropulsion
             fuelPropellant.ratio = 0.1f;
             ecPropellant.ratio = fuelPropellant.ratio * ecRate;
 
-            //CalculateCurves();
+            
         }
 
         public override void OnStart(PartModule.StartState state)
@@ -269,8 +269,6 @@ namespace NearFuturePropulsion
                 Utils.Log("VariableIspEngine: Using tweakable method");
             }
 
-
-            CalculateCurves();
 
             Utils.Log("VariableIspEngine: Setup complete");
 
@@ -397,22 +395,22 @@ namespace NearFuturePropulsion
             }
             if (engine != null && multiEngine.runningPrimary)
             {
-                for (int i= 0; i < engineModes[0].throttleAnim.Count; i++)
+                for (int i= 0; i < engineModes[0].throttleAnim.Length; i++)
                 {
                     engineModes[0].throttleAnim[i].normalizedTime = Mathf.MoveTowards(engineModes[0].throttleAnim[i].normalizedTime, engine.normalizedThrustOutput, TimeWarp.deltaTime);
                 }
-                for (int i= 0; i < engineModes[1].throttleAnim.Count; i++)
+                for (int i = 0; i < engineModes[1].throttleAnim.Length; i++)
                 {
                     engineModes[1].throttleAnim[i].normalizedTime = Mathf.MoveTowards(engineModes[1].throttleAnim[i].normalizedTime, 0f, TimeWarp.deltaTime * 3.0f);
                 }
             }
             else
             {
-                for (int i= 0; i < engineModes[1].throttleAnim.Count; i++)
+                for (int i = 0; i < engineModes[1].throttleAnim.Length; i++)
                 {
                     engineModes[1].throttleAnim[i].normalizedTime = Mathf.MoveTowards(engineModes[1].throttleAnim[i].normalizedTime, engine.normalizedThrustOutput, TimeWarp.deltaTime);
                 }
-                for (int i= 0; i < engineModes[0].throttleAnim.Count; i++)
+                for (int i = 0; i < engineModes[0].throttleAnim.Length; i++)
                 {
                     engineModes[0].throttleAnim[i].normalizedTime = Mathf.MoveTowards(engineModes[0].throttleAnim[i].normalizedTime, 0f, TimeWarp.deltaTime * 3.0f);
                 }
