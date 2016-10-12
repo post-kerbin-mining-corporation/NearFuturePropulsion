@@ -2,6 +2,7 @@ v0.8.0
 ------
 - KSP 1.2 recompile
 - Updated bundled MM
+- Updated bundled CRP
 - Some code cleanups
 - Added GW3 'Triplet' Nested-Channel Hall Thruster
 - Added KO-1 Pulsed Plasma RCS Block
