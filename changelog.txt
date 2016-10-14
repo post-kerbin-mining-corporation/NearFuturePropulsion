@@ -13,6 +13,9 @@ v0.8.0
 - Added LiFt-4 Magnetoplasmadynamic RCS Block
 - Added LiFt-5 Magnetoplasmadynamic RCS Block
 - New models, alternate compact versions and FX for 0.625m Hall effect and gridded thrusters
+- Soft-deprecated 1.25m and 2.5m gridded/hall thruster clusters
+- Added patch that adds identical-looking HeFT series of MPDT RCS Blocks using LqdHydrogen if CryoTanks is installed
+- Added optional Extras patch that converts all Hall thrusters to use Xenon (no stats changes)
 
 v0.7.4
 ------
@@ -46,7 +49,7 @@ v0.7.0
 - Major tank mass rebalance
 - New MPDT models in the 0.625m and 1.25m categories
 - All 0.625m engines are now surface attachable
-- Added Streetwind's electric engine tweaking patch 
+- Added Streetwind's electric engine tweaking patch
 
 v0.6.1
 ------
@@ -93,7 +96,7 @@ v0.5.1
 - Fixed the Dawn balance patch's heat production
 - Adjusted several engine heat production values
 - Fixed the AFTER CTT location
-- Added LH2 production to the ISRU 
+- Added LH2 production to the ISRU
 
 v0.5.0
 ------
@@ -165,7 +168,7 @@ v0.2.3
 - Liquid Hydrogen cost per unit reduced to 0.5 from 0.75
 - VASIMR engine shows a few GUI fields in the editor to help with visualization of Isp/thrust changes (power use, estimated thrust and Isp)
 - VASIMR engine thrust-Isp curve is now nonlinear
-- PIT engines can now increase their Isp at the cost of adding power usage and heat. Larger models have a higher Isp peak. 
+- PIT engines can now increase their Isp at the cost of adding power usage and heat. Larger models have a higher Isp peak.
 - Fixed AFTER's manufacturer name
 - Fixed PB-ION patch duplicating the engine
 - Fixed PB-ION's added exhaust effect
@@ -173,7 +176,7 @@ v0.2.3
 - Added KX-XK 2.5m PIT
 - Added S-IE Twin Ion Engine
 - Added Gyro-Quad Hall Thruster Cluster
-- Overhauled sound effects for all engines, added flameout and activate sounds. 
+- Overhauled sound effects for all engines, added flameout and activate sounds.
 
 v0.2.2
 ------
