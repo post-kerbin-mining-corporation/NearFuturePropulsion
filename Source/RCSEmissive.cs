@@ -38,7 +38,6 @@ namespace NearFuturePropulsion
                 for (int i= 0; i < thrustMaterials.Count; i++)
                 {
                     Color c;
-                    Debug.Log(rcs.thrustForces[i]);
                     c = new Color(1f,1f,1f,alphaCurve.Evaluate(rcs.thrustForces[i]));
                     thrustMaterials[i].SetColor("_EmissiveColor",c);
 
