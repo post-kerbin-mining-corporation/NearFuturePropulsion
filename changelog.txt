@@ -1,3 +1,10 @@
+v0.8.1
+------
+- Updated CRP to 6.0.1
+- Minor bugfixes
+- Balance tweaks for GW3 engine
+- Balance tweaks for electric RCS
+
 v0.8.0
 ------
 - KSP 1.2 recompile
