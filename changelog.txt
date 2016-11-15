@@ -4,8 +4,8 @@ v0.8.2
 - New model and FX for KP-XL 'Inductor' Pulsed Inductive Thruster
 - New model and FX for KP-01 'Scintillator' Pulsed Inductive Thruster
 - Fixed surface attach node for KP-01
-- Updated ModuleManager to 2.7.3
-- Updated CRP to 0.6.2
+- Updated ModuleManager to 2.7.4
+- Updated CRP to 0.6.3
 
 v0.8.1
 ------

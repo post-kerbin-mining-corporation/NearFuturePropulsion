@@ -12,8 +12,8 @@ DEPENDENCIES
 ============
 
 Required:
-- Community Resource Pack (0.6.2)
-- ModuleManager (2.7.3)
+- Community Resource Pack (0.6.3)
+- ModuleManager (2.7.4)
 
 Optional
 - Community Tech Tree (v2.2+)
