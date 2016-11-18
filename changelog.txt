@@ -1,3 +1,13 @@
+v0.8.2
+------
+- KSP 1.2.1
+- New model and FX for KP-XL 'Inductor' Pulsed Inductive Thruster
+- New model and FX for KP-01 'Scintillator' Pulsed Inductive Thruster
+- Fixed surface attach node for KP-01
+- Updated ModuleManager to 2.7.4
+- Updated CRP to 0.6.3
+- KPBS ISRU now produces lithium (thanks Wyzard256)
+
 v0.8.1
 ------
 - Updated CRP to 6.0.1
