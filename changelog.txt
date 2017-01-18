@@ -5,6 +5,7 @@ v0.8.3
 - Updated bundled B9PartSwitch to 1.5.3
 - Updated bundled CRP to 0.6.4
 - Fixed 1.25m PIT offset top node
+- Converted costs of some fuel tanks to integers
 
 v0.8.2
 ------
