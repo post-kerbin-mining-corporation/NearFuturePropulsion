@@ -46,4 +46,6 @@ The art assets in this pack (all models and textures) are distributed under an A
 
 ModuleManager by ialdabaoth and sarbian is distributed under a Creative Commons Sharealike license. More details, including source code, can be found here: http://forum.kerbalspaceprogram.com/threads/31342-0-20-ModuleManager-1-3-for-all-your-stock-modding-needs?p=528607&viewfull=1#post528607
 
+B9PartSwitch by blowfish is also distributed under its own license.
+
 The Community Resource Pack by RoverDude is also distributed under its own license
