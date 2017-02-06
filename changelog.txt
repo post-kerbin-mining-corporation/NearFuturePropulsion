@@ -1,6 +1,7 @@
 v0.8.4
 ------
 - Updated B9PartSwitch to 1.7.1
+- Updated CRP to 0.6.6
 - Fixed download link in .version file
 - Fixed missing manufacturer for PPT RCS block
 
