@@ -1,3 +1,7 @@
+v0.8.5
+------
+- Repaired AVC link that was pointing at NF Electrical
+
 v0.8.4
 ------
 - Updated B9PartSwitch to 1.7.1
