@@ -260,12 +260,12 @@ namespace NearFuturePropulsion
         protected VariableEngineMode LoadEngineMode(ConfigNode node)
         {
             FloatCurve curve = Utils.GetValue(node, "thrustIspCurve", new FloatCurve());
-            string propellant = node.GetValue("propellant");
+
             string modeName = node.GetValue("name");
             string throttleAnimationName = node.GetValue("throttleAnimation");
-            int throttleAnimationLayer = int.Parse(node.GetValue("layer"));
+            int throttleAnimationLayer = int.Parse(node.GetValue("throttleAnimationLayer"));
 
-            return new VariableEngineMode(this.part, propellant, modeName, curve, throttleAnimationName, throttleAnimationLayer);
+            return new VariableEngineMode(this.part, modeName, curve, throttleAnimationName, throttleAnimationLayer);
             //engineModes[0] = new VariableEngineMode(this.part,Mode1Propellant,Mode1Name,Mode1ThrustMin,Mode1ThrustMax,Mode1IspMin,Mode1IspMax,Mode1Animation);
             //engineModes[1] = new VariableEngineMode(this.part,Mode2Propellant,Mode2Name, Mode2ThrustMin, Mode2ThrustMax, Mode2IspMin, Mode2IspMax,Mode2Animation);
         }

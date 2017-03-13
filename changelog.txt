@@ -1,3 +1,13 @@
+v0.8.6
+------
+- New models for KP-XL PIT, Colossus MPDT, all VASIMR engines
+- All electrical RCS parts and AiRES Atmospheric Sounder are now physicsless to match stock RCS
+- Cryogenic Separator now properly pumps air (does not need to be accelerated to high velocities to get good intake)
+- Rewrote VariableISPEngine plugin
+-- Improved support for customization
+-- Code optimizations
+-- Support for multiple engine animations
+
 v0.8.5
 ------
 - Repaired AVC link that was pointing at NF Electrical
