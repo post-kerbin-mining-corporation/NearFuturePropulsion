@@ -134,11 +134,11 @@ namespace NearFuturePropulsion
         {
           string toRet = "";
           toRet += String.Format( "{0} Mode \n", Mode1Name);
-          toRet += String.Format("-{0:F1} kN to {1:F1} kN\n", Mode1ThrustMin, Mode1ThrustMax) +
-                  String.Format("-{0:F1} s to {1:F1} s\n", Mode1IspMin, Mode1IspMax);
+          toRet += String.Format("-{0:F1} kN to {1:F1} kN", Mode1ThrustMin, Mode1ThrustMax) +
+                  String.Format("-{0:F1} s to {1:F1} s", Mode1IspMin, Mode1IspMax);
           toRet += String.Format( "\n{0} Mode \n", Mode2Name);
-          toRet += String.Format("-{0:F1} s to {1:F1} kN\n", Mode2ThrustMin, Mode2ThrustMax) +
-                  String.Format("-{0:F1} s to {1:F1} s\n", Mode2IspMin, Mode2IspMax);
+          toRet += String.Format("-{0:F1} kN to {1:F1} kN", Mode2ThrustMin, Mode2ThrustMax) +
+                  String.Format("-{0:F1} s to {1:F1} s", Mode2IspMin, Mode2IspMax);
 
             return toRet;
         }
