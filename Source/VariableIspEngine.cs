@@ -371,14 +371,14 @@ namespace NearFuturePropulsion
             {
                 if (engine != null && multiEngine.runningPrimary)
                 {
-                    //engineModes[1].SetAnimationThrottle(0f, TimeWarp.deltaTime * 3.0f);
-                    engineModes[0].SetAnimationThrottle(engine.normalizedThrustOutput, TimeWarp.deltaTime);
+                    engineModes[1].SetAnimationThrottle(0f, TimeWarp.deltaTime * 3.0f);
+                    engineModes[0].SetAnimationThrottle(engine.normalizedThrustOutput*5f, TimeWarp.deltaTime);
 
                 }
                 else if (engine != null)
                 {
-                    //engineModes[0].SetAnimationThrottle(0f, TimeWarp.deltaTime * 3.0f);
-                    engineModes[1].SetAnimationThrottle(engine.normalizedThrustOutput, TimeWarp.deltaTime);
+                    engineModes[0].SetAnimationThrottle(0f, TimeWarp.deltaTime * 3.0f);
+                    engineModes[1].SetAnimationThrottle(engine.normalizedThrustOutput*5f, TimeWarp.deltaTime);
 
                 }
             }
