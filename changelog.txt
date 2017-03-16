@@ -6,7 +6,7 @@ v0.8.6
 - Rewrote VariableISPEngine plugin
 -- Improved support for cfg customization
 -- Code optimizations
--- Support for multiple engine animations
+-- Support for multiple engine throttle animations
 - Deprecated NFPAnimateHeat in favour of stock ModuleAnimateHeat, which now has the necessary capabilities
 
 v0.8.5
