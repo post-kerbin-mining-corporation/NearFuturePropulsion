@@ -13,74 +13,38 @@ namespace NearFuturePropulsion
 {
     public class VariableISPEngine:PartModule
     {
-
-        // Use the direct throttle method
+        // Use the direct throttle method, where VESSEL throttle links directly to Isp
         [KSPField(isPersistant = false)]
         public bool UseDirectThrottle = false;
 
-        // Link all engines
+        // Link all engine variable throttle sliders
         [KSPField(isPersistant = true)]
         public bool LinkAllEngines = false;
-
-        [KSPField(isPersistant = false)]
-        public FloatCurve ThrustCurve = new FloatCurve();
-
-        [KSPField(isPersistant = false)]
-        public FloatCurve IspCurve = new FloatCurve();
-
 
         // Current thrust setting
         [KSPField(isPersistant = true, guiActive = true, guiActiveEditor = true, guiName = "Power Level") , UI_FloatRange(minValue = 0f, maxValue = 100f, stepIncrement = 1f)]
         public float CurThrustSetting = 0f;
 
-        // Ec to use
+        // Power use in Ec/s
         [KSPField(isPersistant = false, guiActive = false, guiActiveEditor = true, guiName = "Power Input", guiUnits = " Ec/s")]
         public float EnergyUsage = 100f;
 
+        // Currently selected engine ID
+        [KSPField(isPersistant = true)]
+        public int EngineModeID;
+
+        // Currently Selected Engine Mode (string)
+        [KSPField(isPersistant = false, guiActive = true, guiName = "Fuel Mode")]
+        public string CurrentEngineID = "";
+
+        // Debug UI Only Fields
         [KSPField(isPersistant = false, guiActive = false, guiActiveEditor = true, guiName = "Estimated Isp:", guiUnits = " s")]
         public float CurIsp;
         [KSPField(isPersistant = false, guiActive = false, guiActiveEditor = true, guiName = "Estimated Thrust:", guiUnits = " kN")]
         public float CurThrust;
 
-        [KSPField(isPersistant = true)]
-        public int EngineModeID;
-
-        // MODE 1 PARAMS
-        [KSPField(isPersistant = false)]
-        public string Mode1Name;
-        [KSPField(isPersistant = false)]
-        public string Mode1Propellant;
-        [KSPField(isPersistant = false)]
-        public float Mode1ThrustMin;
-        [KSPField(isPersistant = false)]
-        public float Mode1ThrustMax;
-        [KSPField(isPersistant = false)]
-        public float Mode1IspMin;
-        [KSPField(isPersistant = false)]
-        public float Mode1IspMax;
-        [KSPField(isPersistant = false)]
-        public string Mode1Animation = "";
-
-        // MODE 2 PARAMS
-        [KSPField(isPersistant = false)]
-        public string Mode2Name;
-        [KSPField(isPersistant = false)]
-        public string Mode2Propellant;
-        [KSPField(isPersistant = false)]
-        public float Mode2ThrustMin;
-        [KSPField(isPersistant = false)]
-        public float Mode2ThrustMax;
-        [KSPField(isPersistant = false)]
-        public float Mode2IspMin;
-        [KSPField(isPersistant = false)]
-        public float Mode2IspMax;
-        [KSPField(isPersistant = false)]
-        public string Mode2Animation= "";
-
-        // Fuel Status string
-        [KSPField(isPersistant = false, guiActive = true, guiName = "Fuel Mode")]
-        public string CurrentEngineID = "";
-
+        /// UI BUTTONS
+        // Link all engines together
         [KSPEvent(guiActive = true, guiName = "Link All Variable Engines", active = true)]
         public void LinkEngines()
         {
@@ -90,7 +54,7 @@ namespace NearFuturePropulsion
             }
             LinkAllEngines = true;
         }
-
+        // Break all engine links
         [KSPEvent(guiActive = true, guiName = "Unlink All Variable Engines", active = false)]
         public void UnlinkEngines()
         {
@@ -102,9 +66,7 @@ namespace NearFuturePropulsion
             LinkAllEngines = false;
         }
 
-
-
-        // Actions
+        // UI ACTIONS
         [KSPAction("Link Engines")]
         public void LinkEnginesAction(KSPActionParam param)
         {
@@ -125,26 +87,26 @@ namespace NearFuturePropulsion
             {
                 allVariableEngines[i].LinkAllEngines = !allVariableEngines[i].LinkAllEngines;
             }
-
         }
-
 
 
         public override string GetInfo()
         {
           string toRet = "";
-          toRet += String.Format( "{0} Mode \n", Mode1Name);
-          toRet += String.Format("-{0:F1} kN to {1:F1} kN\n", Mode1ThrustMin, Mode1ThrustMax) +
-                  String.Format("-{0:F1} s to {1:F1} s\n", Mode1IspMin, Mode1IspMax);
-          toRet += String.Format( "\n{0} Mode \n", Mode2Name);
-          toRet += String.Format("-{0:F1} s to {1:F1} kN\n", Mode2ThrustMin, Mode2ThrustMax) +
-                  String.Format("-{0:F1} s to {1:F1} s\n", Mode2IspMin, Mode2IspMax);
+          toRet += String.Format("<color=#99ff00>{0} Mode</color>. \n", engineModes[0].name);
+          toRet += String.Format("- {0:F1} kN to {1:F1} kN\n", engineModes[0].thrustRange.x, engineModes[0].thrustRange.y) +
+                  String.Format("- {0:F1} s to {1:F1} s", engineModes[0].ispRange.x, engineModes[0].ispRange.y);
+          toRet += String.Format("\n<color=#99ff00>{0} Mode</color> \n", engineModes[1].name);
+          toRet += String.Format("- {0:F1} kN to {1:F1} kN\n", engineModes[1].thrustRange.x, engineModes[1].thrustRange.y) +
+                  String.Format("- {0:F1} s to {1:F1} s", engineModes[1].ispRange.x, engineModes[1].ispRange.y);
 
             return toRet;
         }
 
-        private float minThrust= 0f;
+        // List of modes avaialble
+        private VariableEngineMode[] engineModes;
 
+        // Access to components
         private MultiModeEngine multiEngine;
         private ModuleEnginesFX engine;
         private List<ModuleEnginesFX> engines;
@@ -152,73 +114,120 @@ namespace NearFuturePropulsion
         private Propellant ecPropellant;
         private Propellant fuelPropellant;
 
-        private FloatCurve AtmoThrustCurve;
-        private FloatCurve AtmoIspCurve;
 
-        private VariableEngineMode[] engineModes;
+        float lastThrottle = -1f;
+        float lastThrustSetting = -1f;
+        List<VariableISPEngine> allVariableEngines;
 
+        
+        // Class that stores data for a Variable Engine Mode
+        [System.Serializable]
         public class VariableEngineMode
         {
             public string name = "";
-            public string propellant = "";
-            public FloatCurve thrustCurve = new FloatCurve();
-            public FloatCurve ispCurve = new FloatCurve();
+
+            public Vector2 ispRange;
+            public Vector3 thrustRange;
+
+            public FloatCurve IspThrustCurve = new FloatCurve();
             public AnimationState[] throttleAnim;
 
-            public VariableEngineMode() {}
-
-            public VariableEngineMode(Part p, string n, string prop,float t1, float t2, float i1, float i2, string anim )
+            public VariableEngineMode(Part p, string n, FloatCurve ispThrustCurve, string anim, int animLayer )
             {
                 name = n;
-                propellant = prop;
-                thrustCurve = new FloatCurve();
+                
+                IspThrustCurve = ispThrustCurve;
 
-                thrustCurve.Add(0f, t1,0f,0f);
-                thrustCurve.Add(1f, t2,0f,0f);
-                ispCurve = new FloatCurve();
-                ispCurve.Add(0f, i1,0f,0f);
-                ispCurve.Add(1f, i2,0f,0f);
-                throttleAnim = Utils.SetUpAnimation(anim,p);
+                ispRange = new Vector2(IspThrustCurve.minTime, IspThrustCurve.maxTime );
+                thrustRange = new Vector2(IspThrustCurve.Evaluate(ispRange.x), IspThrustCurve.Evaluate(ispRange.y));
 
+                Utils.Log(String.Format("VariableIspEngine: Loaded engine mode {0}: Isp {1}-{2}s, Thrust {3}-{4}", name, ispRange.x, ispRange.y, thrustRange.x, thrustRange.y));
+
+                // Set up the animation
+                throttleAnim = Utils.SetUpAnimation(anim, p);
                 foreach (AnimationState t in throttleAnim)
                 {
-                   // t.AddMixingTransform("Engine");
+              
                     t.blendMode = AnimationBlendMode.Blend;
-                    t.layer = 15;
-                    t.weight = 1.0f;
+                  
+                    t.layer = animLayer;
                     t.enabled = true;
+               }
+            }
+            public string ToString()
+            {
+                return String.Format("VariableIspEngine: {0}: Isp {1}-{2}s, Thrust {3}-{4}", name, ispRange.x, ispRange.y, thrustRange.x, thrustRange.y);
+            }
+            // Sets the progress of the animation
+            public void SetAnimationThrottle(float throttle, float timeDelta)
+            {
+                
+                for (int i = 0; i < throttleAnim.Length; i++)
+                {
+                    //Utils.Log(String.Format("{0} throttle set to {1}", name, throttle));
+                    if (throttle >= 0f)
+                    {
+                        throttleAnim[i].layer = 1;
+                        throttleAnim[i].weight = 1.0f;
+                        throttleAnim[i].enabled = true;
+                        throttleAnim[i].normalizedTime = throttle;
+                    }
+                    else
+                    {
+                        throttleAnim[i].normalizedTime = 0f;
+                        throttleAnim[i].layer = 0;
+                        throttleAnim[i].weight = 0.0f;
+                        
+                    }
+                    
                 }
+            }
+
+            // Returns Isp given a 0-1 throttle value
+            public float GetIsp(float throttle)
+            {
+                return (ispRange.y - ispRange.x) * throttle + ispRange.x;
+            }
+            // Returns thrust given a 0-1 throttle value
+            public float GetThrust(float throttle)
+            {
+              return IspThrustCurve.Evaluate(GetIsp(throttle));
             }
         }
 
-
-
+        // Load engine mode data
         public override void OnLoad(ConfigNode node)
         {
             base.OnLoad(node);
-            this.moduleName = "Variable ISP Engine";
+            
+            ConfigNode[] varNodes = node.GetNodes("VARIABLEISPMODE");
+            engineModes = new VariableEngineMode[2];
+            for (int i=0; i < varNodes.Length; i++)
+            {
+              engineModes[i] = LoadEngineMode(varNodes[i]);
+            }
+            Utils.Log(engineModes.Length.ToString());
         }
 
-
-
+        // Changes the engine's Isp and thrust according to the variable slider
         public void ChangeIspAndThrust(float level)
         {
-
-            RecalculateRatios(ThrustCurve.Evaluate(level), IspCurve.Evaluate(level));
+            RecalculateRatios(engineModes[EngineModeID].GetThrust(level), engineModes[EngineModeID].GetIsp(level));
 
             engine.atmosphereCurve = new FloatCurve();
-            engine.atmosphereCurve.Add(0f, IspCurve.Evaluate(level));
+            engine.atmosphereCurve.Add(0f, engineModes[EngineModeID].GetIsp(level));
             engine.atmosphereCurve.Add(1f, 100f);
             engine.atmosphereCurve.Add(4f, 1f);
 
-            engine.maxThrust = ThrustCurve.Evaluate(level);
+            engine.maxThrust = engineModes[EngineModeID].GetThrust(level);
 
             CurIsp = engine.atmosphereCurve.Evaluate(0f);
-            CurThrust = engine.maxThrust = ThrustCurve.Evaluate(level);
+            CurThrust = engine.maxThrust;
             //Utils.Log("VariableIspEngine: Changed Isp toengine.atmosphereCurve.Evaluate(0f) " + engine.atmosphereCurve.Evaluate(0f).ToString());
             //Utils.Log("VariableIspEngine: Changed thrust to " + engine.maxThrust.ToString());
         }
 
+        // Recalculate engine fuel ratios to maintain a proper EC consumption
         private void RecalculateRatios(float desiredthrust, float desiredisp)
         {
             double fuelDensity = PartResourceLibrary.Instance.GetDefinition(fuelPropellant.name).density;
@@ -227,21 +236,23 @@ namespace NearFuturePropulsion
             fuelRate = fuelRate / fuelDensity;
             float ecRate = EnergyUsage / (float)fuelRate;
 
-
             fuelPropellant.ratio = 0.1f;
             ecPropellant.ratio = fuelPropellant.ratio * ecRate;
-
-            
         }
 
         public override void OnStart(PartModule.StartState state)
         {
-
+            if (engineModes == null || engineModes[0] == null)
+            {
+                ConfigNode node = GameDatabase.Instance.GetConfigs("PART").
+                    Single(c => part.partInfo.name == c.name).config.
+                    GetNodes("MODULE").Single(n => n.GetValue("name") == moduleName);
+                Utils.Log(node.ToString());
+                OnLoad(node);
+            }
             if (state != StartState.Editor)
                 SetupVariableEngines();
 
-
-            LoadEngineModes();
             LoadEngineModules();
 
             if (engines.Count == 0)
@@ -254,8 +265,6 @@ namespace NearFuturePropulsion
 
             if (engine != null)
                 Utils.Log("VariableIspEngine: Engine module check passed");
-
-
 
             // Choose throttle mode
             if (UseDirectThrottle)
@@ -274,14 +283,19 @@ namespace NearFuturePropulsion
 
         }
 
-        // Finds the engine modes
-        protected void LoadEngineModes()
+        // Loads an engine Mode from a confignode structure
+        protected VariableEngineMode LoadEngineMode(ConfigNode node)
         {
-            engineModes = new VariableEngineMode[2];
-            engineModes[0] = new VariableEngineMode(this.part,Mode1Propellant,Mode1Name,Mode1ThrustMin,Mode1ThrustMax,Mode1IspMin,Mode1IspMax,Mode1Animation);
-            engineModes[1] = new VariableEngineMode(this.part,Mode2Propellant,Mode2Name, Mode2ThrustMin, Mode2ThrustMax, Mode2IspMin, Mode2IspMax,Mode2Animation);
-        }
+            FloatCurve curve = Utils.GetValue(node, "IspThrustCurve", new FloatCurve());
 
+            string modeName = node.GetValue("name");
+            string throttleAnimationName = node.GetValue("throttleAnimation");
+            int throttleAnimationLayer = int.Parse(node.GetValue("throttleAnimationLayer"));
+            
+            return new VariableEngineMode(this.part, modeName, curve, throttleAnimationName, throttleAnimationLayer);
+            //engineModes[0] = new VariableEngineMode(this.part,Mode1Propellant,Mode1Name,Mode1ThrustMin,Mode1ThrustMax,Mode1IspMin,Mode1IspMax,Mode1Animation);
+            //engineModes[1] = new VariableEngineMode(this.part,Mode2Propellant,Mode2Name, Mode2ThrustMin, Mode2ThrustMax, Mode2IspMin, Mode2IspMax,Mode2Animation);
+        }
 
         // Finds multiengine and ModuleEnginesFX
         private void LoadEngineModules()
@@ -301,9 +315,10 @@ namespace NearFuturePropulsion
             }
 
         }
+
+        // Sets the engine mode
         private void SetMode()
         {
-
             if (multiEngine.runningPrimary)
                 EngineModeID = 0;
             else
@@ -312,9 +327,6 @@ namespace NearFuturePropulsion
             Utils.Log("VariableIspEngine: Changing mode to " + engineModes[EngineModeID].name);
             CurrentEngineID = engineModes[EngineModeID].name;
             engine = engines[EngineModeID];
-            ThrustCurve = engineModes[EngineModeID].thrustCurve;
-            IspCurve = engineModes[EngineModeID].ispCurve;
-
 
             for (int i=0; i < engine.propellants.Count; i++)
             {
@@ -329,30 +341,14 @@ namespace NearFuturePropulsion
             }
 
             //Utils.Log("VariableIspEngine: Changed mode to " + engine.engineID);
-            Utils.Log("VariableIspEngine: Fuel: " + fuelPropellant.name);
-            Utils.Log("VariableIspEngine: Thrust Curve: " + ThrustCurve.Evaluate(0f) + " to " + ThrustCurve.Evaluate(1f));
-            Utils.Log("VariableIspEngine: Isp Curve: " + IspCurve.Evaluate(0f) + " to " + IspCurve.Evaluate(1f));
+            //Utils.Log("VariableIspEngine: Fuel: " + fuelPropellant.name);
+            //Utils.Log("VariableIspEngine: Thrust Curve: " + ThrustCurve.Evaluate(0f) + " to " + ThrustCurve.Evaluate(1f));
+            //Utils.Log("VariableIspEngine: Isp Curve: " + IspCurve.Evaluate(0f) + " to " + IspCurve.Evaluate(1f));
 
             AdjustVariableThrust();
         }
 
-
-        // finds the flow rate given thrust, isp and the propellant
-        private float FindFlowRate(float thrust, float isp, Propellant fuelPropellant)
-        {
-            double fuelDensity = PartResourceLibrary.Instance.GetDefinition(fuelPropellant.name).density;
-            double fuelRate = ((thrust * 1000f) / (isp * Utils.GRAVITY)) / (fuelDensity * 1000f);
-            return (float)fuelRate;
-        }
-
-        private float FindIsp(float thrust, float flowRate, Propellant fuelPropellant)
-        {
-            double fuelDensity = PartResourceLibrary.Instance.GetDefinition(fuelPropellant.name).density;
-            double isp = (((thrust * 1000f) / (Utils.GRAVITY)) / flowRate) / (fuelDensity * 1000f);
-            return (float)isp;
-        }
-
-
+        // Locates all variable engies on a vessel
         private void SetupVariableEngines()
         {
             allVariableEngines = new List<VariableISPEngine>();
@@ -370,15 +366,9 @@ namespace NearFuturePropulsion
                     if (candidate != null && candidate != this && !allVariableEngines.Contains(candidate ) )
                         allVariableEngines.Add(candidate);
                 }
-
             }
         }
 
-        int frameCounter = 0;
-        float lastThrottle = -1f;
-        float lastThrustSetting = -1f;
-
-        List<VariableISPEngine> allVariableEngines;
 
         public void ChangeIspAndThrustLinked(VariableISPEngine other, float level)
         {
@@ -386,41 +376,34 @@ namespace NearFuturePropulsion
                 CurThrustSetting = level * 100f;
         }
 
-        public override void OnUpdate()
+        public void Update()
         {
             if ((LinkAllEngines && Events["LinkEngines"].active) || (!LinkAllEngines && Events["UnlinkEngines"].active))
             {
                 Events["LinkEngines"].active = !LinkAllEngines;
                 Events["UnlinkEngines"].active = LinkAllEngines;
             }
-            if (engine != null && multiEngine.runningPrimary)
+            if (HighLogic.LoadedSceneIsFlight)
             {
-                for (int i= 0; i < engineModes[0].throttleAnim.Length; i++)
+                if (engine != null && multiEngine.runningPrimary)
                 {
-                    engineModes[0].throttleAnim[i].normalizedTime = Mathf.MoveTowards(engineModes[0].throttleAnim[i].normalizedTime, engine.normalizedThrustOutput, TimeWarp.deltaTime);
+                    
+                    engineModes[1].SetAnimationThrottle(-1f, TimeWarp.deltaTime * 3.0f);
+                    engineModes[0].SetAnimationThrottle(engine.normalizedThrustOutput, TimeWarp.deltaTime);
+
                 }
-                for (int i = 0; i < engineModes[1].throttleAnim.Length; i++)
+                else if (engine != null)
                 {
-                    engineModes[1].throttleAnim[i].normalizedTime = Mathf.MoveTowards(engineModes[1].throttleAnim[i].normalizedTime, 0f, TimeWarp.deltaTime * 3.0f);
-                }
-            }
-            else
-            {
-                for (int i = 0; i < engineModes[1].throttleAnim.Length; i++)
-                {
-                    engineModes[1].throttleAnim[i].normalizedTime = Mathf.MoveTowards(engineModes[1].throttleAnim[i].normalizedTime, engine.normalizedThrustOutput, TimeWarp.deltaTime);
-                }
-                for (int i = 0; i < engineModes[0].throttleAnim.Length; i++)
-                {
-                    engineModes[0].throttleAnim[i].normalizedTime = Mathf.MoveTowards(engineModes[0].throttleAnim[i].normalizedTime, 0f, TimeWarp.deltaTime * 3.0f);
+                    
+                    engineModes[0].SetAnimationThrottle(-1f, TimeWarp.deltaTime * 3.0f);
+                    engineModes[1].SetAnimationThrottle(engine.normalizedThrustOutput, TimeWarp.deltaTime);
+
                 }
             }
         }
 
         public void FixedUpdate()
         {
-
-
             if (engine != null)
             {
                 if ((multiEngine.runningPrimary && EngineModeID != 0) || (!multiEngine.runningPrimary && EngineModeID != 1))
@@ -449,7 +432,6 @@ namespace NearFuturePropulsion
                     }
 
                 }
-
             }
 
         }
