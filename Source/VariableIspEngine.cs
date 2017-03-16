@@ -93,12 +93,12 @@ namespace NearFuturePropulsion
         public override string GetInfo()
         {
           string toRet = "";
-          toRet += String.Format( "{0} Mode \n", engineModes[0].name);
-          toRet += String.Format("-{0:F1} kN to {1:F1} kN", engineModes[0].thrustRange.x, engineModes[0].thrustRange.y) +
-                  String.Format("-{0:F1} s to {1:F1} s", engineModes[0].ispRange.x, engineModes[0].ispRange.y);
-          toRet += String.Format("\n{0} Mode \n", engineModes[1].name);
-          toRet += String.Format("-{0:F1} kN to {1:F1} kN", engineModes[1].thrustRange.x, engineModes[1].thrustRange.y) +
-                  String.Format("-{0:F1} s to {1:F1} s", engineModes[1].ispRange.x, engineModes[1].ispRange.y);
+          toRet += String.Format("<color=#99ff00>{0} Mode</color>. \n", engineModes[0].name);
+          toRet += String.Format("- {0:F1} kN to {1:F1} kN\n", engineModes[0].thrustRange.x, engineModes[0].thrustRange.y) +
+                  String.Format("- {0:F1} s to {1:F1} s", engineModes[0].ispRange.x, engineModes[0].ispRange.y);
+          toRet += String.Format("\n<color=#99ff00>{0} Mode</color> \n", engineModes[1].name);
+          toRet += String.Format("- {0:F1} kN to {1:F1} kN\n", engineModes[1].thrustRange.x, engineModes[1].thrustRange.y) +
+                  String.Format("- {0:F1} s to {1:F1} s", engineModes[1].ispRange.x, engineModes[1].ispRange.y);
 
             return toRet;
         }
@@ -147,11 +147,12 @@ namespace NearFuturePropulsion
                 throttleAnim = Utils.SetUpAnimation(anim, p);
                 foreach (AnimationState t in throttleAnim)
                 {
+              
                     t.blendMode = AnimationBlendMode.Blend;
+                  
                     t.layer = animLayer;
-                    t.weight = 1.0f;
                     t.enabled = true;
-                }
+               }
             }
             public string ToString()
             {
@@ -163,7 +164,22 @@ namespace NearFuturePropulsion
                 
                 for (int i = 0; i < throttleAnim.Length; i++)
                 {
-                  throttleAnim[i].normalizedTime = throttle;
+                    //Utils.Log(String.Format("{0} throttle set to {1}", name, throttle));
+                    if (throttle >= 0f)
+                    {
+                        throttleAnim[i].layer = 1;
+                        throttleAnim[i].weight = 1.0f;
+                        throttleAnim[i].enabled = true;
+                        throttleAnim[i].normalizedTime = throttle;
+                    }
+                    else
+                    {
+                        throttleAnim[i].normalizedTime = 0f;
+                        throttleAnim[i].layer = 0;
+                        throttleAnim[i].weight = 0.0f;
+                        
+                    }
+                    
                 }
             }
 
@@ -371,14 +387,16 @@ namespace NearFuturePropulsion
             {
                 if (engine != null && multiEngine.runningPrimary)
                 {
-                    engineModes[1].SetAnimationThrottle(0f, TimeWarp.deltaTime * 3.0f);
-                    engineModes[0].SetAnimationThrottle(engine.normalizedThrustOutput*5f, TimeWarp.deltaTime);
+                    
+                    engineModes[1].SetAnimationThrottle(-1f, TimeWarp.deltaTime * 3.0f);
+                    engineModes[0].SetAnimationThrottle(engine.normalizedThrustOutput, TimeWarp.deltaTime);
 
                 }
                 else if (engine != null)
                 {
-                    engineModes[0].SetAnimationThrottle(0f, TimeWarp.deltaTime * 3.0f);
-                    engineModes[1].SetAnimationThrottle(engine.normalizedThrustOutput*5f, TimeWarp.deltaTime);
+                    
+                    engineModes[0].SetAnimationThrottle(-1f, TimeWarp.deltaTime * 3.0f);
+                    engineModes[1].SetAnimationThrottle(engine.normalizedThrustOutput, TimeWarp.deltaTime);
 
                 }
             }
