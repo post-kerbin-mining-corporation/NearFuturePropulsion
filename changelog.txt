@@ -1,3 +1,8 @@
+v0.8.7
+------
+- Fixed small typo in VAB VariableIspEngine display
+- New version of NFP Tweak Patch from Streetwind
+
 v0.8.6
 ------
 - New models for KP-XL PIT, Colossus MPDT, all VASIMR engines
