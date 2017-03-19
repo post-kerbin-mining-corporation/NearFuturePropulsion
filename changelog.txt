@@ -1,6 +1,9 @@
 v0.8.7
 ------
 - Fixed small typo in VAB VariableIspEngine display
+- Fixed thrust transform typo on 0.625m VASIMR
+- Fixed surface attach node on 0.625m VASIMR
+- Enabled surface attachment on the 0.625/1.25m VASIMR casings
 - New version of NFP Tweak Patch from Streetwind
 
 v0.8.6
