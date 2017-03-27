@@ -1,8 +1,12 @@
 v0.9.0
 ------
 - KSP 1.3
-- Changed nomenclature of thrust/isp slider on VariableIspEngines
-- Changed CLS patch to behave better when CLS is not around
+- Rebalanced all Xenon tanks to have a mass ratio of 4
+- Rebalanced all Argon tanks to have a mass ratio of 4
+- Rebalanced all Argon tanks to contain a similar amount of fuel as Xenon tanks do
+- Rebalanced all Lithium tanks to have a mass ratio of 4
+
+- Changed nomenclature of thrust/Isp slider on VariableIspEngines
 
 v0.8.7
 ------
