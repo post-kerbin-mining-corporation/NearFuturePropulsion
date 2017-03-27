@@ -22,7 +22,7 @@ namespace NearFuturePropulsion
         public bool LinkAllEngines = false;
 
         // Current thrust setting
-        [KSPField(isPersistant = true, guiActive = true, guiActiveEditor = true, guiName = "Power Level") , UI_FloatRange(minValue = 0f, maxValue = 100f, stepIncrement = 1f)]
+        [KSPField(isPersistant = true, guiActive = true, guiActiveEditor = true, guiName = "Efficiency") , UI_FloatRange(minValue = 0f, maxValue = 100f, stepIncrement = 1f)]
         public float CurThrustSetting = 0f;
 
         // Power use in Ec/s

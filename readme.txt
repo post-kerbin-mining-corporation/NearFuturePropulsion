@@ -1,5 +1,5 @@
 =================================
-NEAR FUTURE PROPULSION PACK 0.8.7
+NEAR FUTURE PROPULSION PACK 0.9.0
 =================================
 
 This pack contains the advanced electric propulsion technologies
