@@ -1,3 +1,15 @@
+v0.9.0
+------
+- KSP 1.3
+- Switched to 1.3 string localization
+- Rebalanced all Xenon tanks to have a mass ratio of 4 (including stock Xenon tanks)
+- Modified the effective volume of all Xenon tanks to be closer to stock effective volumes
+- Rebalanced all Argon tanks to have a mass ratio of 4
+- Rebalanced all Argon tanks to contain a similar fuel mass to Xenon tanks
+- Rebalanced all Lithium tanks to have a mass ratio of 4
+- Slightly rebalanced the contents of lithium tanks to match stock volumes
+- Changed nomenclature of thrust/Isp slider on VariableIspEngines
+
 v0.8.7
 ------
 - Fixed small typo in VAB VariableIspEngine display
