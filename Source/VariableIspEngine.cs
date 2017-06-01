@@ -265,7 +265,7 @@ namespace NearFuturePropulsion
             }
 
             Fields["CurrentEngineID"].guiName = Localizer.Format("#LOC_NFPropulsion_ModuleVariableISPEngine_Field_CurrentEngineID");
-            Fields["EnergyUsage"].guiName = Localizer.Format("#LOC_NFPropulsion_ModuleVariableISPEngine_Field_EnergyUsage ");
+            Fields["EnergyUsage"].guiName = Localizer.Format("#LOC_NFPropulsion_ModuleVariableISPEngine_Field_EnergyUsage");
             Fields["CurThrustSetting"].guiName = Localizer.Format("#LOC_NFPropulsion_ModuleVariableISPEngine_Field_CurThrustSetting");
             Fields["CurIsp"].guiName = Localizer.Format("#LOC_NFPropulsion_ModuleVariableISPEngine_Field_CurIsp");
             Fields["CurThrust"].guiName = Localizer.Format("#LOC_NFPropulsion_ModuleVariableISPEngine_Field_CurThrust");

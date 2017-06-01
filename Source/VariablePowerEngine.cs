@@ -46,6 +46,8 @@ namespace NearFuturePropulsion
         private FloatCurve AtmoThrustCurve;
         private FloatCurve AtmoIspCurve;
 
+        private FloatCurve SavedFloatCurve;
+
         private List<VariablePowerEngine> allVariableEngines;
         private ModuleEnginesFX engine;
 
@@ -131,7 +133,7 @@ namespace NearFuturePropulsion
         private void LoadEngineModules()
         {
             engine = part.GetComponent<ModuleEnginesFX>();
-
+            SavedFloatCurve = engine.atmosphereCurve;
         }
 
 
@@ -238,8 +240,8 @@ namespace NearFuturePropulsion
             //Utils.Log("VariablePowerEngine:" + engine.engineID);
             engine.atmosphereCurve = new FloatCurve();
             engine.atmosphereCurve.Add(0f, IspCurve.Evaluate(level));
-            engine.atmosphereCurve.Add(1f, 100f);
-            engine.atmosphereCurve.Add(4f, 0.001f);
+            engine.atmosphereCurve.Add(1f, SavedFloatCurve.Evaluate(1f));
+            engine.atmosphereCurve.Add(4f, SavedFloatCurve.Evaluate(4f));
 
             engine.heatProduction = HeatCurve.Evaluate(level);
 
