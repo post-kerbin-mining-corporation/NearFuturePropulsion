@@ -148,7 +148,7 @@ namespace NearFuturePropulsion
             }
             Fields["curPowerUse"].guiName = Localizer.Format("#LOC_NFPropulsion_ModuleVariablePowerEngine_Field_curPowerUse");
             Fields["CurIsp"].guiName = Localizer.Format("#LOC_NFPropulsion_ModuleVariablePowerEngine_Field_CurIsp");
-            Fields["PowerLevel"].guiName = Localizer.Format("#LOC_NFPropulsion_ModuleVariablePowerEngine_Field_PowerLevel");
+            Fields["CurPowerSetting"].guiName = Localizer.Format("#LOC_NFPropulsion_ModuleVariablePowerEngine_Field_PowerLevel");
 
             Events["LinkEngines"].guiName = Localizer.Format("#LOC_NFPropulsion_ModuleVariablePowerEngine_Event_LinkEngines");
             Events["UnlinkEngines"].guiName = Localizer.Format("#LOC_NFPropulsion_ModuleVariablePowerEngine_Event_UnlinkEngines");
