@@ -127,7 +127,8 @@ namespace NearFuturePropulsion
         float lastThrottle = -1f;
         float lastThrustSetting = -1f;
         List<VariableISPEngine> allVariableEngines;
-
+        List<FloatCurve> savedFloatCurves = new List<FloatCurve>();
+        
 
         // Class that stores data for a Variable Engine Mode
         [System.Serializable]
@@ -138,6 +139,7 @@ namespace NearFuturePropulsion
             public Vector2 ispRange;
             public Vector3 thrustRange;
 
+            
             public FloatCurve IspThrustCurve = new FloatCurve();
             public AnimationState[] throttleAnim;
 
@@ -225,8 +227,8 @@ namespace NearFuturePropulsion
 
             engine.atmosphereCurve = new FloatCurve();
             engine.atmosphereCurve.Add(0f, engineModes[EngineModeID].GetIsp(level));
-            engine.atmosphereCurve.Add(1f, 100f);
-            engine.atmosphereCurve.Add(4f, 1f);
+            engine.atmosphereCurve.Add(1f, savedFloatCurves[EngineModeID].Evaluate(1f));
+            engine.atmosphereCurve.Add(4f, savedFloatCurves[EngineModeID].Evaluate(4f));
 
             engine.maxThrust = engineModes[EngineModeID].GetThrust(level);
 
@@ -251,6 +253,8 @@ namespace NearFuturePropulsion
 
         public override void OnStart(PartModule.StartState state)
         {
+
+
             if (engineModes == null || engineModes[0] == null)
             {
                 ConfigNode node = GameDatabase.Instance.GetConfigs("PART").
@@ -324,6 +328,8 @@ namespace NearFuturePropulsion
         private void LoadEngineModules()
         {
             engines = new List<ModuleEnginesFX>();
+            savedFloatCurves = new List<FloatCurve>();
+
             PartModuleList modules = part.Modules;
 
             foreach (PartModule mod in part.Modules)
@@ -331,6 +337,8 @@ namespace NearFuturePropulsion
                 if (mod.moduleName == "ModuleEnginesFX")
                 {
                     engines.Add((ModuleEnginesFX)mod);
+
+                    savedFloatCurves.Add(((ModuleEnginesFX)mod).atmosphereCurve);
                     //Utils.Log("VariableIspEngine: " +  ((ModuleEnginesFX)mod).runningEffectName);
                 }
                 if (mod.moduleName == "MultiModeEngine")
