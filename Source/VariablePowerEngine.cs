@@ -235,13 +235,17 @@ namespace NearFuturePropulsion
         {
             curPowerUse = PowerCurve.Evaluate(level);
 
-            RecalculateRatios(curPowerUse, IspCurve.Evaluate(level));
+            
 
             //Utils.Log("VariablePowerEngine:" + engine.engineID);
             engine.atmosphereCurve = new FloatCurve();
             engine.atmosphereCurve.Add(0f, IspCurve.Evaluate(level));
-            engine.atmosphereCurve.Add(1f, SavedFloatCurve.Evaluate(1f));
-            engine.atmosphereCurve.Add(4f, SavedFloatCurve.Evaluate(4f));
+            engine.atmosphereCurve.Add(1f, 100f);
+            engine.atmosphereCurve.Add(4f, 5f);
+
+         
+            //RecalculateRatios(curPowerUse, engine.atmosphereCurve.Evaluate((float)vessel.staticPressurekPa));
+            RecalculateRatios(curPowerUse, IspCurve.Evaluate(level));
 
             engine.heatProduction = HeatCurve.Evaluate(level);
 
@@ -267,7 +271,7 @@ namespace NearFuturePropulsion
 
 
             float ecRate = desiredPower / (float)fuelRate;
-            Debug.Log(ecRate);
+            
             fuelPropellant.ratio = 1f;
             ecPropellant.ratio = ecRate;
 
