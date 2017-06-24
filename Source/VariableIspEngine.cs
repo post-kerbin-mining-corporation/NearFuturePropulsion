@@ -128,7 +128,7 @@ namespace NearFuturePropulsion
         float lastThrustSetting = -1f;
         List<VariableISPEngine> allVariableEngines;
         List<FloatCurve> savedFloatCurves = new List<FloatCurve>();
-        
+
 
         // Class that stores data for a Variable Engine Mode
         [System.Serializable]
@@ -139,7 +139,7 @@ namespace NearFuturePropulsion
             public Vector2 ispRange;
             public Vector3 thrustRange;
 
-            
+
             public FloatCurve IspThrustCurve = new FloatCurve();
             public AnimationState[] throttleAnim;
 
@@ -247,7 +247,7 @@ namespace NearFuturePropulsion
             fuelRate = fuelRate / fuelDensity;
             float ecRate = EnergyUsage / (float)fuelRate;
 
-            fuelPropellant.ratio = 0.1f;
+            fuelPropellant.ratio = 1f;
             ecPropellant.ratio = fuelPropellant.ratio * ecRate;
         }
 
