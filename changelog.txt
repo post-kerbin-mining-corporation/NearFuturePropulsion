@@ -1,6 +1,8 @@
 v0.9.1
 ------
 - Updated B9PartSwitch to 1.8.1
+- Worked around a Squad localization bug that causes a bug in KER
+- Added Spanish Translation courtesy of forum user fitiales
 - Fixed all VASIMR engines having bugged Isp/power use/thrust values not representative of those shown in the VAB
 
 v0.9.0
