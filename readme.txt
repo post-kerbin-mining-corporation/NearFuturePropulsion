@@ -43,6 +43,7 @@ LOCALIZATION
 
 This mod includes localization support, and includes translations for
 - Spanish (KSP forum user fitiales)
+- Russian (KSP forum user Dr. Jet)
 
 =========
 LICENSING
