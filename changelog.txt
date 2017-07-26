@@ -1,3 +1,12 @@
+v0.9.3
+------
+- Fixed normals on all parts
+- Russian translation courtesy of Dr. Jet
+
+v0.9.2
+------
+- Fixed a localization error on the small lithium tank
+
 v0.9.1
 ------
 - Updated B9PartSwitch to 1.8.1

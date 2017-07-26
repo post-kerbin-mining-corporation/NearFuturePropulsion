@@ -1,5 +1,5 @@
 =================================
-NEAR FUTURE PROPULSION PACK 0.9.1
+NEAR FUTURE PROPULSION PACK 0.9.3
 =================================
 
 This pack contains the advanced electric propulsion technologies
@@ -36,6 +36,14 @@ KSP-MINI-AVC
 This mod includes version checking using MiniAVC (http://forum.kerbalspaceprogram.com/threads/79745).
 If you opt-in, it will use the internet to check whether there is a new version available. Data is only read from the internet and no personal information is sent.
 For a more comprehensive version checking experience, please download the KSP-AVC Plugin (http://forum.kerbalspaceprogram.com/threads/79745).
+
+============
+LOCALIZATION
+============
+
+This mod includes localization support, and includes translations for
+- Spanish (KSP forum user fitiales)
+- Russian (KSP forum user Dr. Jet)
 
 =========
 LICENSING
