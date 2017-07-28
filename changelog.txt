@@ -1,3 +1,8 @@
+v0.9.4
+------
+- Fixed corrupted export for two models
+- Fixed incorrect MM version
+
 v0.9.3
 ------
 - Fixed normals on all parts
