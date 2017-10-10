@@ -1,5 +1,5 @@
 =================================
-NEAR FUTURE PROPULSION PACK 0.9.1
+NEAR FUTURE PROPULSION PACK 0.9.4
 =================================
 
 This pack contains the advanced electric propulsion technologies
@@ -14,7 +14,7 @@ DEPENDENCIES
 Required:
 - BP Part Switch (1.8.1)
 - Community Resource Pack (0.7.1)
-- ModuleManager (2.8.0)
+- ModuleManager (2.8.1)
 
 Optional
 - Community Tech Tree (v3.0+)
@@ -36,6 +36,15 @@ KSP-MINI-AVC
 This mod includes version checking using MiniAVC (http://forum.kerbalspaceprogram.com/threads/79745).
 If you opt-in, it will use the internet to check whether there is a new version available. Data is only read from the internet and no personal information is sent.
 For a more comprehensive version checking experience, please download the KSP-AVC Plugin (http://forum.kerbalspaceprogram.com/threads/79745).
+
+============
+LOCALIZATION
+============
+
+This mod includes localization support, and includes translations for
+- Spanish (KSP forum user fitiales)
+- Russian (KSP forum user Dr. Jet)
+- Chinese (Q654517651 through KSP forum user DY_ZBX)
 
 =========
 LICENSING
