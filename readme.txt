@@ -12,8 +12,8 @@ DEPENDENCIES
 ============
 
 Required:
-- BP Part Switch (1.8.1)
-- Community Resource Pack (0.7.1)
+- BP Part Switch (1.10.0)
+- Community Resource Pack (0.8.0)
 - ModuleManager (2.8.1)
 
 Optional
