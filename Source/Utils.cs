@@ -10,7 +10,7 @@ namespace NearFuturePropulsion
 {
     internal static class Utils
     {
-        public const double GRAVITY = 9.80665;    
+        public const double GRAVITY = 9.80665;
 
         // This function loads up some animationstates
         public static AnimationState[] SetUpAnimation(string animationName, Part part)
@@ -30,23 +30,23 @@ namespace NearFuturePropulsion
                 states.Add(animationState);
                 layer++;
             }
-            // Convert 
+            // Convert
             return states.ToArray();
         }
 
         // Returns true if ship is it atmoshpere
         public static bool VesselInAtmosphere(Vessel vessel)
         {
-            return vessel.atmDensity <= 0d; 
+            return vessel.atmDensity <= 0d;
            //return vessel.heightFromSurface < vessel.mainBody.maxAtmosphereAltitude;
         }
 
-    
+
         // fix for deprecated Unity function
         public static void SetActiveRecursively(GameObject obj, bool active)
         {
            obj.SetActive(active);
- 
+
            foreach (Transform child in obj.transform)
            {
                 SetActiveRecursively(child.gameObject, active);
@@ -104,12 +104,12 @@ namespace NearFuturePropulsion
             {
                 result = "None";
             }
-          
+
 
             return result;
         }
 
-        // finds the flow rate given thrust, isp and the propellant 
+        // finds the flow rate given thrust, isp and the propellant
         public static float FindFlowRate(float thrust, float isp, Propellant fuelPropellant)
         {
             double fuelDensity = PartResourceLibrary.Instance.GetDefinition(fuelPropellant.name).density;
@@ -139,9 +139,35 @@ namespace NearFuturePropulsion
 
         public static float FindPowerUse(float thrust,float isp,Propellant ecPropellant, Propellant fuelPropellant)
         {
-          
+
             return (ecPropellant.ratio / fuelPropellant.ratio) * FindFlowRate(thrust, isp, fuelPropellant);
         }
+
+        // Based on some Firespitter code by Snjo
+        public static FloatCurve GetValue(ConfigNode node, string nodeID, FloatCurve defaultValue)
+        {
+            if (node.HasNode(nodeID))
+            {
+                FloatCurve theCurve = new FloatCurve();
+                ConfigNode[] nodes = node.GetNodes(nodeID);
+                for (int i = 0; i < nodes.Length; i++)
+                {
+                    string[] valueArray = nodes[i].GetValues("key");
+
+                    for (int l = 0; l < valueArray.Length; l++)
+                    {
+                        string[] splitString = valueArray[l].Split(' ');
+                        Vector2 v2 = new Vector2(float.Parse(splitString[0]), float.Parse(splitString[1]));
+                        theCurve.Add(v2.x, v2.y, 0, 0);
+                    }
+                }
+                Debug.Log(theCurve.Evaluate(0f));
+                return theCurve;
+            }
+            Debug.Log("default");
+            return defaultValue;
+        }
+
         // LOGGING
         // -------
         public static void Log(string message)

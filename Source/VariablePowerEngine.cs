@@ -1,11 +1,12 @@
 ﻿/// VariablePowerEngine
 /// ---------------------------------------------------
 /// A module that allows the Power use and Isp of an engine to be varied via a part slider
-/// 
+///
 using System;
 using System.Collections.Generic;
 using System.Text;
 using UnityEngine;
+using KSP.Localization;
 
 namespace NearFuturePropulsion
 {
@@ -45,14 +46,25 @@ namespace NearFuturePropulsion
         private FloatCurve AtmoThrustCurve;
         private FloatCurve AtmoIspCurve;
 
+        private FloatCurve SavedFloatCurve;
+
         private List<VariablePowerEngine> allVariableEngines;
         private ModuleEnginesFX engine;
 
+        public string GetModuleTitle()
+        {
+            return "VariablePowerEngine";
+        }
+        public override string GetModuleDisplayName()
+        {
+            return Localizer.Format("#LOC_NFPropulsion_ModuleVariablePowerEngine_ModuleName");
+        }
+
         public override string GetInfo()
         {
-            return String.Format("Power Range: {0:F1} - {1:F1} Ec/s", PowerCurve.Evaluate(0f), PowerCurve.Evaluate(1f)) + "\n" +
-                  String.Format("Isp Range: {0:F0} - {1:F1} s", IspCurve.Evaluate(0f), IspCurve.Evaluate(1f)) + "\n";
-            
+            return Localizer.Format("#LOC_NFPropulsion_ModuleVariablePowerEngine_PartInfo",
+            PowerCurve.Evaluate(0f), PowerCurve.Evaluate(1f), IspCurve.Evaluate(0f), IspCurve.Evaluate(1f));
+
         }
 
         [KSPEvent(guiActive = true, guiName = "Link All Variable Engines", active = true)]
@@ -121,7 +133,7 @@ namespace NearFuturePropulsion
         private void LoadEngineModules()
         {
             engine = part.GetComponent<ModuleEnginesFX>();
-       
+            SavedFloatCurve = engine.atmosphereCurve;
         }
 
 
@@ -134,6 +146,17 @@ namespace NearFuturePropulsion
                 Utils.Log("VariablePowerEngine: Engine Module not good");
                 return;
             }
+            Fields["curPowerUse"].guiName = Localizer.Format("#LOC_NFPropulsion_ModuleVariablePowerEngine_Field_curPowerUse");
+            Fields["CurIsp"].guiName = Localizer.Format("#LOC_NFPropulsion_ModuleVariablePowerEngine_Field_CurIsp");
+            Fields["CurPowerSetting"].guiName = Localizer.Format("#LOC_NFPropulsion_ModuleVariablePowerEngine_Field_PowerLevel");
+
+            Events["LinkEngines"].guiName = Localizer.Format("#LOC_NFPropulsion_ModuleVariablePowerEngine_Event_LinkEngines");
+            Events["UnlinkEngines"].guiName = Localizer.Format("#LOC_NFPropulsion_ModuleVariablePowerEngine_Event_UnlinkEngines");
+
+            Actions["ToggleLinkEnginesAction"].guiName = Localizer.Format("#LOC_NFPropulsion_ModuleVariablePowerEngine_Action_ToggleLinkEnginesAction");
+            Actions["LinkEnginesAction"].guiName = Localizer.Format("#LOC_NFPropulsion_ModuleVariablePowerEngine_Action_LinkEnginesAction");
+            Actions["UnlinkEnginesAction"].guiName = Localizer.Format("#LOC_NFPropulsion_ModuleVariablePowerEngine_Action_UnlinkEnginesAction");
+
 
             if (state != StartState.Editor)
                 SetupVariableEngines();
@@ -150,7 +173,7 @@ namespace NearFuturePropulsion
                 Events["UnlinkEngines"].active = LinkAllEngines;
             }
         }
-       
+
 
         public void FixedUpdate()
         {
@@ -212,20 +235,24 @@ namespace NearFuturePropulsion
         {
             curPowerUse = PowerCurve.Evaluate(level);
 
-            RecalculateRatios(curPowerUse, IspCurve.Evaluate(level));
+            
 
             //Utils.Log("VariablePowerEngine:" + engine.engineID);
             engine.atmosphereCurve = new FloatCurve();
             engine.atmosphereCurve.Add(0f, IspCurve.Evaluate(level));
             engine.atmosphereCurve.Add(1f, 100f);
-            engine.atmosphereCurve.Add(4f, 0.001f);
+            engine.atmosphereCurve.Add(4f, 5f);
+
+         
+            //RecalculateRatios(curPowerUse, engine.atmosphereCurve.Evaluate((float)vessel.staticPressurekPa));
+            RecalculateRatios(curPowerUse, IspCurve.Evaluate(level));
 
             engine.heatProduction = HeatCurve.Evaluate(level);
 
             CurIsp = IspCurve.Evaluate(level);
-            
+
             //Utils.Log("VariablePowerEngine: Changed Isp to " + engine.atmosphereCurve.Evaluate(0f).ToString());
-           // Utils.Log("VariablePowerEngine: Changed power use to " +curPowerUse.ToString());     
+           // Utils.Log("VariablePowerEngine: Changed power use to " +curPowerUse.ToString());
         }
 
         public void ChangeIspAndPowerLinked(VariablePowerEngine other, float level)
@@ -239,19 +266,19 @@ namespace NearFuturePropulsion
             double fuelDensity = PartResourceLibrary.Instance.GetDefinition(fuelPropellant.name).density;
             double fuelRate = ((ConstantThrust) / (desiredisp * engine.g));
             float fuelFlowRate = (float)fuelRate;
-            
+
             fuelRate = fuelRate / fuelDensity;
 
 
             float ecRate = desiredPower / (float)fuelRate;
-            Debug.Log(ecRate);
+            
             fuelPropellant.ratio = 1f;
             ecPropellant.ratio = ecRate;
 
             engine.maxFuelFlow = fuelFlowRate;
         }
 
-        // finds the flow rate given thrust, isp and the propellant 
+        // finds the flow rate given thrust, isp and the propellant
         private float FindFlowRate(float thrust, float isp, Propellant fuelPropellant)
         {
             double fuelDensity = PartResourceLibrary.Instance.GetDefinition(fuelPropellant.name).density;

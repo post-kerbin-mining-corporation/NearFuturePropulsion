@@ -1,7 +1,125 @@
-v0.7.5
+v0.9.5
+------
+- KSP 1.3.1
+- Dependency updates
+- Add support for RLA Sunrise ion engine
+
+v0.9.4
+------
+- Fixed corrupted export for two models
+- Fixed incorrect MM version
+- Chinese translation courtesy of Q654517651
+
+v0.9.3
+------
+- Fixed normals on all parts
+- Russian translation courtesy of Dr. Jet
+
+v0.9.2
+------
+- Fixed a localization error on the small lithium tank
+
+v0.9.1
+------
+- Updated B9PartSwitch to 1.8.1
+- Worked around a Squad localization bug that causes a bug in KER
+- Added Spanish Translation courtesy of forum user fitiales
+- Fixed all VASIMR engines having bugged Isp/power use/thrust values not representative of those shown in the VAB
+
+v0.9.0
+------
+- OLD ENGINE CLUSTERS COMPLETELY DEPRECATED
+- KSP 1.3
+- Updated bundled MM to 2.8.0
+- Updated bundled B9PartSwitch to 1.8.0
+- Updated bundled CRP to 0.7.1
+- Updated MiniAVC to 1.0.3.3
+- Switched to 1.3 string localization
+- Rebalanced all engines Isp, thrust, mass, cost and heat production
+- Rebalanced all Xenon tanks to have a mass ratio of 4 (including stock Xenon tanks)
+- Modified the effective volume of all Xenon tanks to be closer to stock effective volumes
+- Rebalanced all Argon tanks to have a mass ratio of 4
+- Rebalanced all Argon tanks to contain a similar fuel mass to Xenon tanks
+- Rebalanced all Lithium tanks to have a mass ratio of 4
+- Slightly rebalanced the contents of lithium tanks to match stock volumes
+- Fixed missing part search tags on resourcing parts
+- Changed nomenclature of thrust/Isp slider on VariableIspEngine
+- Plugin performance optimizations
+
+v0.8.7
+------
+- Fixed small typo in VAB VariableIspEngine display
+- Fixed thrust transform typo on 0.625m VASIMR
+- Fixed surface attach node on 0.625m VASIMR
+- Enabled surface attachment on the 0.625/1.25m VASIMR casings
+- New version of NFP Tweak Patch from Streetwind
+
+v0.8.6
+------
+- New models for KP-XL PIT, Colossus MPDT, all VASIMR engines
+- All electrical RCS parts and AiRES Atmospheric Sounder are now physicsless to match similar stock parts
+- Cryogenic Separator now properly pumps air (does not need to be accelerated to high velocities to get good resource flow)
+- Rewrote VariableISPEngine plugin
+-- Improved support for cfg customization
+-- Code optimizations
+-- Support for multiple engine throttle animations
+- Deprecated NFPAnimateHeat in favour of stock ModuleAnimateHeat, which now has the necessary capabilities
+
+v0.8.5
+------
+- Repaired AVC link that was pointing at NF Electrical
+
+v0.8.4
+------
+- Updated B9PartSwitch to 1.7.1
+- Updated CRP to 0.6.6
+- Fixed download link in .version file
+- Fixed missing manufacturer for PPT RCS block
+
+v0.8.3
+------
+- Marked for KSP 1.2.2
+- Updated bundled MM to 2.7.5
+- Updated bundled B9PartSwitch to 1.5.3
+- Updated bundled CRP to 0.6.4
+- Fixed 1.25m PIT offset top node
+- Converted costs of some fuel tanks to integers
+
+v0.8.2
+------
+- KSP 1.2.1
+- New model and FX for KP-XL 'Inductor' Pulsed Inductive Thruster
+- New model and FX for KP-01 'Scintillator' Pulsed Inductive Thruster
+- Fixed surface attach node for KP-01
+- Updated ModuleManager to 2.7.4
+- Updated CRP to 0.6.3
+- KPBS ISRU now produces lithium (thanks Wyzard256)
+
+v0.8.1
+------
+- Updated CRP to 6.0.1
+- Minor bugfixes
+- Balance tweaks for GW3 engine
+- Balance tweaks for electric RCS
+
+v0.8.0
 ------
 - KSP 1.2 recompile
+- Updated bundled MM
+- Updated bundled CRP
 - Some code cleanups
+- Added GW3 'Triplet' Nested-Channel Hall Thruster
+- Added KO-1 Pulsed Plasma RCS Block
+- Added IW-201 Gridded RCS Thruster
+- Added SPZ-5167 Hall Effect RCS Thruster
+- Added LiFt-1 Magnetoplasmadynamic RCS Thruster
+- Added LiFt-3 Magnetoplasmadynamic RCS Block
+- Added LiFt-4 Magnetoplasmadynamic RCS Block
+- Added LiFt-5 Magnetoplasmadynamic RCS Block
+- New models, alternate compact versions and FX for 0.625m Hall effect and gridded thrusters
+- Soft-deprecated 1.25m and 2.5m gridded/hall thruster clusters
+- Added patch that adds identical-looking HeFT series of MPDT RCS Blocks using LqdHydrogen if CryoTanks is installed
+- Added optional Extras patch that converts all Hall thrusters to use Xenon (no stats changes)
 
 v0.7.4
 ------
@@ -35,7 +153,7 @@ v0.7.0
 - Major tank mass rebalance
 - New MPDT models in the 0.625m and 1.25m categories
 - All 0.625m engines are now surface attachable
-- Added Streetwind's electric engine tweaking patch 
+- Added Streetwind's electric engine tweaking patch
 
 v0.6.1
 ------
@@ -82,7 +200,7 @@ v0.5.1
 - Fixed the Dawn balance patch's heat production
 - Adjusted several engine heat production values
 - Fixed the AFTER CTT location
-- Added LH2 production to the ISRU 
+- Added LH2 production to the ISRU
 
 v0.5.0
 ------
@@ -154,7 +272,7 @@ v0.2.3
 - Liquid Hydrogen cost per unit reduced to 0.5 from 0.75
 - VASIMR engine shows a few GUI fields in the editor to help with visualization of Isp/thrust changes (power use, estimated thrust and Isp)
 - VASIMR engine thrust-Isp curve is now nonlinear
-- PIT engines can now increase their Isp at the cost of adding power usage and heat. Larger models have a higher Isp peak. 
+- PIT engines can now increase their Isp at the cost of adding power usage and heat. Larger models have a higher Isp peak.
 - Fixed AFTER's manufacturer name
 - Fixed PB-ION patch duplicating the engine
 - Fixed PB-ION's added exhaust effect
@@ -162,7 +280,7 @@ v0.2.3
 - Added KX-XK 2.5m PIT
 - Added S-IE Twin Ion Engine
 - Added Gyro-Quad Hall Thruster Cluster
-- Overhauled sound effects for all engines, added flameout and activate sounds. 
+- Overhauled sound effects for all engines, added flameout and activate sounds.
 
 v0.2.2
 ------

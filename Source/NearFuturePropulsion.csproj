@@ -80,7 +80,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="NFPAnimateHeat.cs" />
+    <Compile Include="RCSEmissive.cs" />
     <Compile Include="VariableIspEngine.cs" />
     <Compile Include="Utils.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
