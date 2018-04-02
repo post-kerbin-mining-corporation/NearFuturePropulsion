@@ -1,3 +1,21 @@
+v1.0.0
+------
+- KSP 1.4.2
+- Recompiled plugin
+- Updated ModuleManager to 3.
+- Updated B9PartSwitch to 2.
+- Removed xenon tank capacity patch as it is no longer needed
+- Added more lithium tanks
+-- 0.625m set in 3 lengths
+-- New small 1.25m tank
+-- Radial in 1.25mish and 0.625mish sizes
+-- Revised textures of all other lithium tanks
+- Rearranged Lithium tanks in CTT mode
+- HeFT RCS thrusters have unique models/textures
+- Added specular maps to electric RCS blocks that were lacking them
+- Adjusted unlock cost of most electric fuel tanks
+- Changed a number of model references to absolute
+
 v0.9.6
 ------
 - Updated ModuleManager to 3.0.4
