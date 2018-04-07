@@ -5,6 +5,7 @@ v1.0.0
 - Updated ModuleManager to 3.0.6
 - Updated B9PartSwitch to 2.2.1
 - Updated MiniAVC to 1.2.0.1
+- Updated CRP to 0.10.0
 - Removed xenon tank capacity patch as it is no longer needed
 - Added more lithium tanks
 -- 0.625m set in 3 lengths
