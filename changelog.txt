@@ -1,3 +1,9 @@
+v1.0.1
+------
+- KSP 1.4.3
+- Switched versioning to mix/max specification
+- Additions/fixes to Russian translation
+
 v1.0.0
 ------
 - KSP 1.4.2
