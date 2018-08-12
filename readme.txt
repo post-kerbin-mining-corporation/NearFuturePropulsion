@@ -1,5 +1,5 @@
 =================================
-NEAR FUTURE PROPULSION PACK 0.9.5
+NEAR FUTURE PROPULSION PACK 1.0.2
 =================================
 
 This pack contains the advanced electric propulsion technologies
@@ -12,9 +12,9 @@ DEPENDENCIES
 ============
 
 Required:
-- BP Part Switch (1.10.0)
-- Community Resource Pack (0.8.0)
-- ModuleManager (2.8.1)
+- BP Part Switch (2.3.3)
+- Community Resource Pack (0.10.0)
+- ModuleManager (3.0.7)
 
 Optional
 - Community Tech Tree (v3.0+)
