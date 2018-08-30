@@ -1,3 +1,8 @@
+v1.0.3
+------
+- Fixed typo in small 2.5m lithium tank
+- Fixed RLA xenon tank balance patch (it's now correct)
+
 v1.0.2
 ------
 - KSP 1.4.5
