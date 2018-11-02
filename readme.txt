@@ -12,7 +12,7 @@ DEPENDENCIES
 ============
 
 Required:
-- BP Part Switch (2.4.3)
+- BP Part Switch (2.4.5)
 - Community Resource Pack (1.0.0)
 - ModuleManager (3.1.0)
 
