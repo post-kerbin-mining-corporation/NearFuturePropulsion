@@ -1,5 +1,5 @@
 =================================
-NEAR FUTURE PROPULSION PACK 1.0.2
+NEAR FUTURE PROPULSION PACK 1.0.4
 =================================
 
 This pack contains the advanced electric propulsion technologies
@@ -12,9 +12,9 @@ DEPENDENCIES
 ============
 
 Required:
-- BP Part Switch (2.3.3)
-- Community Resource Pack (0.10.0)
-- ModuleManager (3.0.7)
+- BP Part Switch (2.4.5)
+- Community Resource Pack (1.0.0)
+- ModuleManager (3.1.0)
 
 Optional
 - Community Tech Tree (v3.0+)
@@ -29,13 +29,11 @@ To install, place the GameData folder inside your Kerbal Space Program folder. I
 
 I recommend the use of the Community Tech Tree (http://forum.kerbalspaceprogram.com/threads/100385-Community-Tech-Tree-1-0), which will place these engines in a set of nodes located after the stock Ion Propulsion node.
 
-============
-KSP-MINI-AVC
-============
+=======
+KSP-AVC
+=======
 
-This mod includes version checking using MiniAVC (http://forum.kerbalspaceprogram.com/threads/79745).
-If you opt-in, it will use the internet to check whether there is a new version available. Data is only read from the internet and no personal information is sent.
-For a more comprehensive version checking experience, please download the KSP-AVC Plugin (http://forum.kerbalspaceprogram.com/threads/79745).
+This mod is compatible with KSP-AVC version checking. For a comprehensive version checking experience, please download the appropriate plugin (http://forum.kerbalspaceprogram.com/threads/79745).
 
 ============
 LOCALIZATION

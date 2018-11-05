@@ -1,19 +1,25 @@
-G:\KSP Modding\repositories\NearFuturePropulsion\Source\obj\Debug\NearFuturePropulsion.csprojResolveAssemblyReference.cache
-G:\KSP Modding\repositories\NearFuturePropulsion\Source\bin\Debug\NearFuturePropulsion.dll
-G:\KSP Modding\repositories\NearFuturePropulsion\Source\bin\Debug\NearFuturePropulsion.pdb
-G:\KSP Modding\repositories\NearFuturePropulsion\Source\bin\Debug\Assembly-CSharp-firstpass.dll
-G:\KSP Modding\repositories\NearFuturePropulsion\Source\bin\Debug\Assembly-CSharp.dll
-G:\KSP Modding\repositories\NearFuturePropulsion\Source\bin\Debug\Assembly-UnityScript-firstpass.dll
-G:\KSP Modding\repositories\NearFuturePropulsion\Source\bin\Debug\Assembly-UnityScript.dll
-G:\KSP Modding\repositories\NearFuturePropulsion\Source\bin\Debug\KSPAPIExtensions.dll
-G:\KSP Modding\repositories\NearFuturePropulsion\Source\bin\Debug\UnityEngine.dll
-G:\KSP Modding\repositories\NearFuturePropulsion\Source\bin\Debug\TDx.TDxInput.dll
-G:\KSP Modding\repositories\NearFuturePropulsion\Source\bin\Debug\TrackIRUnity.dll
-G:\KSP Modding\repositories\NearFuturePropulsion\Source\bin\Debug\Mono.Cecil.dll
-G:\KSP Modding\repositories\NearFuturePropulsion\Source\bin\Debug\Boo.Lang.dll
-G:\KSP Modding\repositories\NearFuturePropulsion\Source\bin\Debug\UnityScript.Lang.dll
-G:\KSP Modding\repositories\NearFuturePropulsion\Source\bin\Debug\Mono.Security.dll
-G:\KSP Modding\repositories\NearFuturePropulsion\Source\obj\Debug\NearFuturePropulsion.dll
-G:\KSP Modding\repositories\NearFuturePropulsion\Source\obj\Debug\NearFuturePropulsion.pdb
-G:\KSP Modding\repositories\NearFuturePropulsion\GameData\NearFuturePropulsion\Plugins\NearFuturePropulsion.dll
-G:\KSP Modding\repositories\NearFuturePropulsion\GameData\NearFuturePropulsion\Plugins\NearFuturePropulsion.pdb
+G:/KSP Modding/repositories/NearFuturePropulsion/Source/obj/Debug/NearFuturePropulsion.csprojResolveAssemblyReference.cache
+G:/KSP Modding/repositories/NearFuturePropulsion/Source/bin/Debug/NearFuturePropulsion.dll
+G:/KSP Modding/repositories/NearFuturePropulsion/Source/bin/Debug/NearFuturePropulsion.pdb
+G:/KSP Modding/repositories/NearFuturePropulsion/Source/bin/Debug/Assembly-CSharp-firstpass.dll
+G:/KSP Modding/repositories/NearFuturePropulsion/Source/bin/Debug/Assembly-CSharp.dll
+G:/KSP Modding/repositories/NearFuturePropulsion/Source/bin/Debug/Assembly-UnityScript-firstpass.dll
+G:/KSP Modding/repositories/NearFuturePropulsion/Source/bin/Debug/Assembly-UnityScript.dll
+G:/KSP Modding/repositories/NearFuturePropulsion/Source/bin/Debug/KSPAPIExtensions.dll
+G:/KSP Modding/repositories/NearFuturePropulsion/Source/bin/Debug/UnityEngine.dll
+G:/KSP Modding/repositories/NearFuturePropulsion/Source/bin/Debug/TDx.TDxInput.dll
+G:/KSP Modding/repositories/NearFuturePropulsion/Source/bin/Debug/TrackIRUnity.dll
+G:/KSP Modding/repositories/NearFuturePropulsion/Source/bin/Debug/Mono.Cecil.dll
+G:/KSP Modding/repositories/NearFuturePropulsion/Source/bin/Debug/Boo.Lang.dll
+G:/KSP Modding/repositories/NearFuturePropulsion/Source/bin/Debug/UnityScript.Lang.dll
+G:/KSP Modding/repositories/NearFuturePropulsion/Source/bin/Debug/Mono.Security.dll
+G:/KSP Modding/repositories/NearFuturePropulsion/Source/obj/Debug/NearFuturePropulsion.dll
+G:/KSP Modding/repositories/NearFuturePropulsion/Source/obj/Debug/NearFuturePropulsion.pdb
+G:/KSP Modding/repositories/NearFuturePropulsion/GameData/NearFuturePropulsion/Plugins/NearFuturePropulsion.dll
+G:/KSP Modding/repositories/NearFuturePropulsion/GameData/NearFuturePropulsion/Plugins/NearFuturePropulsion.pdb
+/github/NearFuturePropulsion/Source/obj/Debug/NearFuturePropulsion.csprojResolveAssemblyReference.cache
+/github/NearFuturePropulsion/Source/obj/Debug/NearFuturePropulsion.csproj.CoreCompileInputs.cache
+/github/NearFuturePropulsion/Source/obj/Debug/NearFuturePropulsion.dll
+/github/NearFuturePropulsion/Source/obj/Debug/NearFuturePropulsion.pdb
+/github/NearFuturePropulsion/GameData/NearFuturePropulsion/Plugins/NearFuturePropulsion.dll
+/github/NearFuturePropulsion/GameData/NearFuturePropulsion/Plugins/NearFuturePropulsion.pdb

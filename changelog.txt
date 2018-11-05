@@ -1,3 +1,18 @@
+v1.0.4
+------
+- KSP 1.5.0
+- Updated ModuleManager to 3.1.0
+- Updated B9PartSwitch to 2.4.5
+- Updated CRP to 1.0.0
+- Removed MiniAVC distribution
+- Updated Gas Separator part to use new CRP atmospheric rules
+- Updated ModuleRCSEmissive with options for other color curves than simply alpha and ability to specify the shader property to work on
+
+v1.0.3
+------
+- Fixed typo in small 2.5m lithium tank
+- Fixed RLA xenon tank balance patch (it's now correct)
+
 v1.0.2
 ------
 - KSP 1.4.5

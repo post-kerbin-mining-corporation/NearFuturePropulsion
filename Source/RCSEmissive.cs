@@ -16,13 +16,25 @@ namespace NearFuturePropulsion
         [KSPField(isPersistant = false)]
         public FloatCurve alphaCurve = new FloatCurve();
 
+        [KSPField(isPersistant = false)]
+        public FloatCurve blueCurve = new FloatCurve();
+
+        [KSPField(isPersistant = false)]
+        public FloatCurve greenCurve = new FloatCurve();
+
+        [KSPField(isPersistant = false)]
+        public FloatCurve redCurve = new FloatCurve();
+
+        [KSPField(isPersistant = false)]
+        public string shaderColorParameter = "_EmissiveColor";
+
         ModuleRCSFX rcs;
         List<Material> thrustMaterials;
 
         public void Start()
         {
             rcs = part.GetComponent<ModuleRCSFX>();
-            
+
             thrustMaterials = new List<Material>();
             foreach (Transform t in rcs.thrusterTransforms)
             {
@@ -35,11 +47,14 @@ namespace NearFuturePropulsion
 
             if (HighLogic.LoadedSceneIsFlight)
             {
-                for (int i= 0; i < thrustMaterials.Count; i++)
+                for (int i = 0; i < thrustMaterials.Count; i++)
                 {
                     Color c;
-                    c = new Color(1f,1f,1f,alphaCurve.Evaluate(rcs.thrustForces[i]));
-                    thrustMaterials[i].SetColor("_EmissiveColor",c);
+                    c = new Color(redCurve.Evaluate(rcs.thrustForces[i]),
+                                  greenCurve.Evaluate(rcs.thrustForces[i]),
+                                  blueCurve.Evaluate(rcs.thrustForces[i]),
+                                  alphaCurve.Evaluate(rcs.thrustForces[i]));
+                    thrustMaterials[i].SetColor(shaderColorParameter, c);
 
                 }
             }
