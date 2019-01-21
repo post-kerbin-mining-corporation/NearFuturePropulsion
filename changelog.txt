@@ -1,7 +1,6 @@
 v1.0.6
 ------
-- Added German translation (Three_Pounds)
-- Fix typo in argon tank localization
+- Fixed NFProps being included in distribution by accident
 
 v1.0.5
 ------
