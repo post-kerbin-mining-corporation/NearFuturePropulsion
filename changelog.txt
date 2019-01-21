@@ -1,3 +1,9 @@
+v1.0.7
+------
+- Fixed bulkhead profiles (thanks Streetwind)
+- Fixed an argon tank localization problem
+- Added German translation from Three_Pounds 
+
 v1.0.6
 ------
 - Fixed NFProps being included in distribution by accident

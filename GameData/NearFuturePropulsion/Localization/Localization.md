@@ -28,3 +28,6 @@ There are some characters that should not be translated into another language an
 ## Translation Credits
 
 * fitiales (Spanish)
+* Three_Pounds (German)
+* Q654517651 through KSP forum user DY_ZBX (Simplifed Chinese)
+* Dr. Jet (Russian)

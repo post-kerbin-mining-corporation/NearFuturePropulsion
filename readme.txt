@@ -1,5 +1,5 @@
 =================================
-NEAR FUTURE PROPULSION PACK 1.0.6
+NEAR FUTURE PROPULSION PACK 1.0.7
 =================================
 
 This pack contains the advanced electric propulsion technologies
@@ -43,6 +43,7 @@ This mod includes localization support, and includes translations for
 - Spanish (KSP forum user fitiales)
 - Russian (KSP forum user Dr. Jet)
 - Chinese (Q654517651 through KSP forum user DY_ZBX)
+- German (Three_Pounds)
 
 =========
 LICENSING
