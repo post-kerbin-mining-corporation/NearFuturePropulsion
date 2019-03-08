@@ -1,3 +1,9 @@
+v1.1.0
+------
+- Updated bundled ModuleManager to 4.0.2
+- Reworked many part textures slightly for consistent coloring with Restock project
+- Lithium foil-wrapped tanks now use new reflective material
+
 v1.0.7
 ------
 - Fixed bulkhead profiles (thanks Streetwind)

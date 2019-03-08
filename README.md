@@ -25,7 +25,7 @@ A number of electric propulsion parts designed off real technology and prototype
 
 ### Required
 These components are required for the mod to function and are bundled as part of any download:
-* [ModuleManager (3.1.3)](https://github.com/sarbian/ModuleManager)
+* [ModuleManager (4.0.2)](https://github.com/sarbian/ModuleManager)
 * [B9PartSwitch (2.6.0)](https://github.com/blowfishpro/B9PartSwitch)
 * [Community Resource Pack (1.0.0)](https://github.com/BobPalmer/CommunityResourcePack)
 
