@@ -1,8 +1,19 @@
 v1.1.0
 ------
 - Updated bundled ModuleManager to 4.0.2
-- Reworked many part textures slightly for consistent coloring with Restock project
+- Argon tank textures have been adjusted with similar greys to restock tanks, and the 'internal' tanks use the reflective material for a brushed metal look
+- Argon has a new thematic color (darkish teal)
+- Argon thrusters have been tuned to color-wise match Restock greys
 - Lithium foil-wrapped tanks now use new reflective material
+- Lithium has a new thematic color (darkish red)
+- Lithium thrusters have been tuned to color-wise match Restock greys
+- Xenon tank textures have been adjusted to color-wise match Restock tanks
+- Xenon thrusters have been tuned to color-wise match Restock Dawn
+- Xenon/Argon small thrusters now have normal maps
+- VASIMR thrusters have been tuned to color-wise match Restock greys and use Xenon colours
+- Electric RCS have been tuned to color-wise match their respective engines
+- Surface attachement was enabled for all engines
+- Fixed surface attach node for 0.625m MPDT
 
 v1.0.7
 ------
