@@ -5,7 +5,7 @@ install:
   - pip install awscli boto3 requests
 branches:
   only:
-    - prod
+    - master
 script:
   - git clone https://github.com/post-kerbin-mining-corporation/build-deploy.git  # clone this repo, it contains the stuff that does the heavy lifting
   - cd build-deploy
@@ -20,7 +20,7 @@ deploy:
     script: python build-deploy/src/deploy.py --f ".mod_data.yml" # Deploy package to spacedock, curse, github
     skip_cleanup: true
     on:
-      branch: prod
+      branch: master
   - provider: s3 # releases to S3
     access_key_id: $AWS_ACCESS_KEY_ID
     secret_access_key: $AWS_SECRET_ACCESS_KEY
@@ -31,4 +31,4 @@ deploy:
     region: us-east-2
     upload-dir: near-future-propulsion
     on:
-      branch: prod
+      branch: master
