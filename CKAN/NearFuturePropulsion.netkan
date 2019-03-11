@@ -1,0 +1,36 @@
+{
+  "spec_version": "v1.4",
+  "identifier": "NearFuturePropulsion",
+  "name": "Near Future Propulsion",
+  "abstract": "Advanced electric engines in a stockalike aesthetic.",
+  "author": "Nertea"",
+  "$kref"               : "#/ckan/spacedock/557",
+  "$vref": "#/ckan/ksp-avc",
+  "license": "restricted",
+  "resources": {
+    "homepage": "https://forum.kerbalspaceprogram.com/index.php?/topic/155465-16x-near-future-technologies-16x-fixes-jan-21/",
+    "repository": "https://github.com/ChrisAdderley/NearFuturePropulsion"
+  },
+  "install": [
+    {
+      "find": "NearFuturePropulsion",
+      "install_to": "GameData"
+    }
+  ],
+  "depends": [
+      { "name" : "CommunityResourcePack" },
+      { "name" : "ModuleManager" },
+      { "name" : "B9PartSwitch" }
+  ],
+  "recommends": [
+      { "name" : "CommunityTechTree" },
+      { "name" : "NearFutureElectrical" }
+  ],
+  "suggests": [
+      { "name" : "ContractConfigurator-GrandTours" },
+      { "name" : "NearFutureConstruction" },
+      { "name" : "NearFutureSolar" },
+      { "name" : "NearFutureSpacecraft" },
+      { "name" : "OuterPlanetsMod" }
+  ],
+}
