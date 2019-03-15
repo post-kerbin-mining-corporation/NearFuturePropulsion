@@ -2,9 +2,9 @@
   "spec_version": "v1.4",
   "identifier": "NearFuturePropulsion",
   "name": "Near Future Propulsion",
-  "abstract": "Advanced electric engines in a stockalike aesthetic.",
-  "author": "Nertea"",
-  "$kref"               : "#/ckan/spacedock/557",
+  "abstract": "Advanced electric engines and two new fuel types in a fully developed stockalike aesthetic.",
+  "author": "Nertea",
+  "$kref"  : "#/ckan/spacedock/557",
   "$vref": "#/ckan/ksp-avc",
   "license": "restricted",
   "resources": {
@@ -32,5 +32,5 @@
       { "name" : "NearFutureSolar" },
       { "name" : "NearFutureSpacecraft" },
       { "name" : "OuterPlanetsMod" }
-  ],
+  ]
 }

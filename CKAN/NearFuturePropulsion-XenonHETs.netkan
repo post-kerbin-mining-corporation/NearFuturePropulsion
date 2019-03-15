@@ -3,12 +3,12 @@
   "identifier": "NearFuturePropulsionXenonHETs",
   "name": "Near Future Propulsion - Xenon Hall Effect Thrusters",
   "abstract": "Converts the argon-powered Hall Effect thrusters in NFP to use Xenon fuel",
-  "author": "Nertea"",
+  "author": "Nertea",
   "$kref"  :"#/ckan/spacedock/557",
   "$vref": "#/ckan/ksp-avc",
   "license": "MIT",
   "resources": {
-    "homepage": https://forum.kerbalspaceprogram.com/index.php?/topic/155465-16x-near-future-technologies-16x-fixes-jan-21/",
+    "homepage": "https://forum.kerbalspaceprogram.com/index.php?/topic/155465-16x-near-future-technologies-16x-fixes-jan-21/",
     "repository": "https://github.com/ChrisAdderley/NearFuturePropulsion"
   },
   "install": [
