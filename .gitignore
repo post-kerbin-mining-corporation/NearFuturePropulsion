@@ -219,5 +219,6 @@ pip-log.txt
 build/
 tmp/
 deploy/
+build-deploy/
 build_scripts/version.txt
 build_scripts/changelog.md
