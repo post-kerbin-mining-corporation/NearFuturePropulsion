@@ -5,7 +5,7 @@
   "abstract": "Converts the argon-powered Hall Effect thrusters in NFP to use Xenon fuel",
   "author": "Nertea",
   "$kref"  :"#/ckan/spacedock/557",
-  "$vref": "#/ckan/ksp-avc",
+  "$vref": "#/ckan/ksp-avc/NearFuturePropulsion.version",
   "license": "MIT",
   "resources": {
     "homepage": "https://forum.kerbalspaceprogram.com/index.php?/topic/155465-16x-near-future-technologies-16x-fixes-jan-21/",
