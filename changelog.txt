@@ -1,3 +1,9 @@
+v1.1.1
+------
+- KSP 1.7.x
+
+- Updated RLA ion engine patch to target RLA Reborn (thanks pietralbi)
+
 v1.1.0
 ------
 - Updated bundled ModuleManager to 4.0.2
