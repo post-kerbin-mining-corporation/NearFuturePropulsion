@@ -57,6 +57,7 @@ I certainly accept pull requests. Please target all such things to the `dev` bra
 For translation instructions please see [Localization Instructions](https://github.com/ChrisAdderley/NearFuturePropulsion/blob/master/GameData/NearFuturePropulsion/Localization/Localization.md)
 
 * **German**: Three_Pounds
+* **Russian**: Dr. Jet, Sooll3
 
 ## Licensing
 
