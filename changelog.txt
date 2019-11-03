@@ -1,10 +1,13 @@
-v2.0.0
+v1.2.0
 ------
 - KSP 1.8
 - Upgraded .NET version to 4.5
 - Updated ModuleManager to 4.0.2
 - Updated B9PartSwitch to 2.7.0
 - Updated CRP to 
+- Changed engine throttle animation method for VASIMRs, added new particle effects
+- New particle effects for gridded xenon thrusters
+- Updated EngineLight configs (Zorg)
 
 v1.1.1
 ------
