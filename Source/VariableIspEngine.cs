@@ -153,16 +153,20 @@ namespace NearFuturePropulsion
 
                 Utils.Log(String.Format("VariableIspEngine: Loaded engine mode {0}: Isp {1}-{2}s, Thrust {3}-{4}", name, ispRange.x, ispRange.y, thrustRange.x, thrustRange.y));
 
-                // Set up the animation
-                throttleAnim = Utils.SetUpAnimation(anim, p);
-                foreach (AnimationState t in throttleAnim)
-                {
+        // Set up the animation
+        if (anim != "")
+        {
 
-                    t.blendMode = AnimationBlendMode.Blend;
+          throttleAnim = Utils.SetUpAnimation(anim, p);
+          foreach (AnimationState t in throttleAnim)
+          {
 
-                    t.layer = animLayer;
-                    t.enabled = true;
-                }
+            t.blendMode = AnimationBlendMode.Blend;
+
+            t.layer = animLayer;
+            t.enabled = true;
+          }
+        }
             }
             public string ToString()
             {
@@ -171,26 +175,28 @@ namespace NearFuturePropulsion
             // Sets the progress of the animation
             public void SetAnimationThrottle(float throttle, float timeDelta)
             {
+        if (throttleAnim != null)
+        {
+          for (int i = 0; i < throttleAnim.Length; i++)
+          {
+            //Utils.Log(String.Format("{0} throttle set to {1}", name, throttle));
+            if (throttle >= 0f)
+            {
+              throttleAnim[i].layer = 1;
+              throttleAnim[i].weight = 1.0f;
+              throttleAnim[i].enabled = true;
+              throttleAnim[i].normalizedTime = throttle;
+            }
+            else
+            {
+              throttleAnim[i].normalizedTime = 0f;
+              throttleAnim[i].layer = 0;
+              throttleAnim[i].weight = 0.0f;
 
-                for (int i = 0; i < throttleAnim.Length; i++)
-                {
-                    //Utils.Log(String.Format("{0} throttle set to {1}", name, throttle));
-                    if (throttle >= 0f)
-                    {
-                        throttleAnim[i].layer = 1;
-                        throttleAnim[i].weight = 1.0f;
-                        throttleAnim[i].enabled = true;
-                        throttleAnim[i].normalizedTime = throttle;
-                    }
-                    else
-                    {
-                        throttleAnim[i].normalizedTime = 0f;
-                        throttleAnim[i].layer = 0;
-                        throttleAnim[i].weight = 0.0f;
+            }
 
-                    }
-
-                }
+          }
+        }
             }
 
             // Returns Isp given a 0-1 throttle value
@@ -314,9 +320,11 @@ namespace NearFuturePropulsion
         {
             FloatCurve curve = Utils.GetValue(node, "IspThrustCurve", new FloatCurve());
 
-            string modeName = node.GetValue("name");
-            string throttleAnimationName = node.GetValue("throttleAnimation");
-            int throttleAnimationLayer = int.Parse(node.GetValue("throttleAnimationLayer"));
+      string modeName = node.GetValue("name");
+      string throttleAnimationName = "";
+      node.TryGetValue("throttleAnimation", ref throttleAnimationName);
+      int throttleAnimationLayer = 0;
+      node.TryGetValue("throttleAnimationLayer", ref throttleAnimationLayer);
 
             return new VariableEngineMode(this.part, modeName, curve, throttleAnimationName, throttleAnimationLayer);
             //engineModes[0] = new VariableEngineMode(this.part,Mode1Propellant,Mode1Name,Mode1ThrustMin,Mode1ThrustMax,Mode1IspMin,Mode1IspMax,Mode1Animation);
