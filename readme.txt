@@ -12,9 +12,9 @@ DEPENDENCIES
 ============
 
 Required:
-- BP Part Switch (2.7.0)
-- Community Resource Pack (1.0.0)
-- ModuleManager (4.0.2)
+- BP Part Switch (2.12.1)
+- Community Resource Pack (1.3.0)
+- ModuleManager (4.1.0)
 
 Optional
 - Community Tech Tree (v3.0+)
