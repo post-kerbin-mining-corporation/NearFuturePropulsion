@@ -8,6 +8,7 @@ v1.2.0
 - Changed engine throttle animation method for VASIMRs, added new particle effects
 - New particle effects for gridded xenon thrusters
 - Updated EngineLight configs (Zorg)
+- Updated all MM patches to use NFP patch specifier as needed
 
 v1.1.1
 ------
