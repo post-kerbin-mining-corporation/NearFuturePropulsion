@@ -30,4 +30,4 @@ There are some characters that should not be translated into another language an
 * fitiales (Spanish)
 * Three_Pounds (German)
 * Q654517651 through KSP forum user DY_ZBX (Simplifed Chinese)
-* Dr. Jet (Russian)
+* Dr. Jet, Sooll3 (Russian)

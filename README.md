@@ -25,9 +25,9 @@ A number of electric propulsion parts designed off real technology and prototype
 
 ### Required
 These components are required for the mod to function and are bundled as part of any download:
-* [ModuleManager (4.0.2)](https://github.com/sarbian/ModuleManager)
-* [B9PartSwitch (2.7.0)](https://github.com/blowfishpro/B9PartSwitch)
-* [Community Resource Pack (1.0.0)](https://github.com/BobPalmer/CommunityResourcePack)
+* [ModuleManager (4.1.0)](https://github.com/sarbian/ModuleManager)
+* [B9PartSwitch (2.12.1)](https://github.com/blowfishpro/B9PartSwitch)
+* [Community Resource Pack (1.3.0)](https://github.com/BobPalmer/CommunityResourcePack)
 
 ## Installation
 
@@ -57,6 +57,7 @@ I certainly accept pull requests. Please target all such things to the `dev` bra
 For translation instructions please see [Localization Instructions](https://github.com/ChrisAdderley/NearFuturePropulsion/blob/master/GameData/NearFuturePropulsion/Localization/Localization.md)
 
 * **German**: Three_Pounds
+* **Russian**: Dr. Jet, Sooll3
 
 ## Licensing
 

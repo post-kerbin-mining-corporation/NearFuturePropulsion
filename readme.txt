@@ -1,5 +1,5 @@
 =================================
-NEAR FUTURE PROPULSION PACK 1.1.1
+NEAR FUTURE PROPULSION PACK 1.2.0
 =================================
 
 This pack contains the advanced electric propulsion technologies
@@ -12,9 +12,9 @@ DEPENDENCIES
 ============
 
 Required:
-- BP Part Switch (2.7.0)
-- Community Resource Pack (1.0.0)
-- ModuleManager (4.0.2)
+- BP Part Switch (2.12.1)
+- Community Resource Pack (1.3.0)
+- ModuleManager (4.1.0)
 
 Optional
 - Community Tech Tree (v3.0+)
@@ -41,7 +41,7 @@ LOCALIZATION
 
 This mod includes localization support, and includes translations for
 - Spanish (KSP forum user fitiales)
-- Russian (KSP forum user Dr. Jet)
+- Russian (KSP forum user Dr. Jet, Sooll3)
 - Chinese (Q654517651 through KSP forum user DY_ZBX)
 - German (Three_Pounds)
 
