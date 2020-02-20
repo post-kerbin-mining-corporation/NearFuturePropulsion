@@ -25,8 +25,8 @@ A number of electric propulsion parts designed off real technology and prototype
 
 ### Required
 These components are required for the mod to function and are bundled as part of any download:
-* [ModuleManager (4.1.0)](https://github.com/sarbian/ModuleManager)
-* [B9PartSwitch (2.12.1)](https://github.com/blowfishpro/B9PartSwitch)
+* [ModuleManager (4.1.3)](https://github.com/sarbian/ModuleManager)
+* [B9PartSwitch (2.13.0)](https://github.com/blowfishpro/B9PartSwitch)
 * [Community Resource Pack (1.3.0)](https://github.com/BobPalmer/CommunityResourcePack)
 
 ## Installation
@@ -58,6 +58,7 @@ For translation instructions please see [Localization Instructions](https://gith
 
 * **German**: Three_Pounds
 * **Russian**: Dr. Jet, Sooll3
+* **Simplified Chinese**: DY_ZBX and tinygrox
 
 ## Licensing
 
