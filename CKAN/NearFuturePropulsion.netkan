@@ -24,6 +24,7 @@
   ],
   "recommends": [
       { "name" : "CommunityTechTree" },
+      { "name" : "Waterfall" },
       { "name" : "NearFutureElectrical" }
   ],
   "suggests": [
