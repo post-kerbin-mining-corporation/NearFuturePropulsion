@@ -23,3 +23,10 @@ G:/KSP Modding/repositories/NearFuturePropulsion/GameData/NearFuturePropulsion/P
 /github/NearFuturePropulsion/Source/obj/Debug/NearFuturePropulsion.pdb
 /github/NearFuturePropulsion/GameData/NearFuturePropulsion/Plugins/NearFuturePropulsion.dll
 /github/NearFuturePropulsion/GameData/NearFuturePropulsion/Plugins/NearFuturePropulsion.pdb
+C:\Users\Chris\KSP\Repositories\NearFuturePropulsion\GameData\NearFuturePropulsion\Plugins\NearFuturePropulsion.dll
+C:\Users\Chris\KSP\Repositories\NearFuturePropulsion\GameData\NearFuturePropulsion\Plugins\NearFuturePropulsion.pdb
+C:\Users\Chris\KSP\Repositories\NearFuturePropulsion\Source\obj\Debug\NearFuturePropulsion.csprojAssemblyReference.cache
+C:\Users\Chris\KSP\Repositories\NearFuturePropulsion\Source\obj\Debug\NearFuturePropulsion.csproj.CoreCompileInputs.cache
+C:\Users\Chris\KSP\Repositories\NearFuturePropulsion\Source\obj\Debug\NearFuturePropulsion.csproj.CopyComplete
+C:\Users\Chris\KSP\Repositories\NearFuturePropulsion\Source\obj\Debug\NearFuturePropulsion.dll
+C:\Users\Chris\KSP\Repositories\NearFuturePropulsion\Source\obj\Debug\NearFuturePropulsion.pdb
