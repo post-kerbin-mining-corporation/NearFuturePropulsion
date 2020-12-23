@@ -1,3 +1,12 @@
+v1.3.0
+------
+- Marked for KSP 1.11
+- Updated CRP to 1.4.2
+- Set many parts as usable in inventories roughly following stock model: most 0.625m parts, smaller 1.25m parts, all RCS
+- Added Waterfall support to all engines and RCS
+- Soft-deprecated atmospheric resource mining equipment
+- Small fixes to lit RCS controllers
+
 v1.2.2
 ------
 - Marked for KSP 1.10
