@@ -3,7 +3,7 @@
   "identifier": "NearFuturePropulsionXenonHETs",
   "name": "Near Future Propulsion - Xenon Hall Effect Thrusters",
   "abstract": "Converts the argon-powered Hall Effect thrusters in NFP to use Xenon fuel",
-  "author": "Nertea",
+  "author": "Nertea (Chris Adderley)",
   "$kref"  :"#/ckan/spacedock/557",
   "$vref": "#/ckan/ksp-avc/NearFuturePropulsion.version",
   "license": "MIT",

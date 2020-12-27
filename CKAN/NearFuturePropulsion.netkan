@@ -3,7 +3,7 @@
   "identifier": "NearFuturePropulsion",
   "name": "Near Future Propulsion",
   "abstract": "Advanced electric engines and two new fuel types in a fully developed stockalike aesthetic.",
-  "author": "Nertea",
+  "author": "Nertea (Chris Adderley)",
   "$kref"  : "#/ckan/spacedock/557",
   "$vref": "#/ckan/ksp-avc",
   "license": "restricted",
