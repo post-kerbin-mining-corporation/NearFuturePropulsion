@@ -1,3 +1,7 @@
+v1.3.3
+------
+- Fixed missing curly boi in VASMIR Waterfall patch
+
 v1.3.2
 ------
 - Updated Waterfall support for WF 0.6.0
