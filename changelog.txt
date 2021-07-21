@@ -1,6 +1,7 @@
 v1.3.4
 ------
 - Marked for KSP 1.12
+- Updated B9PartSwitch to 2.18.0
 - Fixed some Waterfall stuff
 
 v1.3.3
