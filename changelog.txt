@@ -1,3 +1,9 @@
+v1.3.5
+------
+- Updated ModuleManager to 4.2.1
+- Fixed waterfall flare for Colossus showing when engine is off
+- Tuned MPDT sound loop to remove ending click
+
 v1.3.4
 ------
 - Marked for KSP 1.12
