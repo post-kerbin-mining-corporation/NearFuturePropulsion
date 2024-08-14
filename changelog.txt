@@ -3,8 +3,9 @@ v1.3.6
 - Updated ModuleManager to 4.2.3
 - Updated B9PartSwitch to 2.20.0
 - Updated target KSP version
-- Support for VABOrganizer
+- Fix localization of small 1.25m argon tank
 - Finally deprecated the old resourcing parts
+- Support for VABOrganizer
 
 v1.3.5
 ------
