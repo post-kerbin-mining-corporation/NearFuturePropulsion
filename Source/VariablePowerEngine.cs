@@ -238,10 +238,21 @@ namespace NearFuturePropulsion
             
 
             //Utils.Log("VariablePowerEngine:" + engine.engineID);
-            engine.atmosphereCurve = new FloatCurve();
-            engine.atmosphereCurve.Add(0f, IspCurve.Evaluate(level));
-            engine.atmosphereCurve.Add(1f, 100f);
-            engine.atmosphereCurve.Add(4f, 5f);
+            //engine.atmosphereCurve = new FloatCurve();
+            //engine.atmosphereCurve.Add(0f, IspCurve.Evaluate(level));
+            //engine.atmosphereCurve.Add(1f, 100f);
+            //engine.atmosphereCurve.Add(4f, 5f);
+            
+            //Iterate over keys in SavedFloatCurve, scale such that engine.atmosphereCurve.Evaluate(0f) == IspCurve.Evaluate(level), but preserve ratios
+            float IspRatio = IspCurve.Evaluate(level) / SavedFloatCurve.Evaluate(0f);
+            engine.atmosphereCurve = new FloatCurve();           
+            AnimationCurve savedAniCurve = SavedFloatCurve.Curve;
+            AnimationCurve scaledAniCurve = new AnimationCurve();
+            foreach (Keyframe key in savedAniCurve.keys)
+            {
+                scaledAniCurve.AddKey(new Keyframe(key.time, key.value * IspRatio, key.inTangent * IspRatio, key.outTangent * IspRatio));
+            }
+            engine.atmosphereCurve.Curve = scaledAniCurve;
 
          
             //RecalculateRatios(curPowerUse, engine.atmosphereCurve.Evaluate((float)vessel.staticPressurekPa));
